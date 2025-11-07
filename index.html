@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>INHILCARGO - Jasa Angkutan Tembilahan</title>
+  <style>
+    body{
+      font-family:'Segoe UI',sans-serif;
+      background:linear-gradient(135deg,#667eea,#764ba2);
+      min-height:100vh;display:flex;justify-content:center;align-items:center;color:#333;padding:20px;
+    }
+    .container{
+      background:#fff;padding:28px;border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,.15);
+      width:100%;max-width:560px
+    }
+    h1{color:#4c51bf;text-align:center;margin-bottom:18px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    label{display:block;font-weight:600;margin-top:10px}
+    select,button{
+      width:100%;padding:10px;margin-top:6px;border-radius:10px;border:1px solid #d1d5db;font-size:1rem;background:#fff
+    }
+    button{background:#4c51bf;color:#fff;font-weight:700;margin-top:18px;cursor:pointer}
+    button:hover{background:#5a67d8}
+    .btn-wa{background:#25D366}
+    .btn-wa:hover{background:#1ebe5d}
+    .result{margin-top:16px;background:#edf2f7;padding:16px;border-radius:12px}
+    .muted{color:#6b7280;font-size:.9rem}
+    .breakdown{line-height:1.6}
+    .money{font-variant-numeric:tabular-nums}
+    .list{margin:8px 0 0 0;padding:0;list-style:none}
+    .list li{display:flex;justify-content:space-between;border-bottom:1px dashed #cbd5e1;padding:6px 0}
+    .badge{display:inline-block;background:#e2e8f0;color:#334155;border-radius:999px;padding:2px 10px;font-size:.8rem;margin-left:6px}
+    .total-line{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-weight:800}
+    .actions-inline{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>INFORMASI TARIF INHILCARGO</h1>
+
+    <label for="armada">Pilih Armada</label>
+    <select id="armada">
+      <option value="">-- Pilih Armada --</option>
+      <option value="viar">VIAR</option>
+      <option value="pickup">PICKUP</option>
+    </select>
+
+    <label for="jenis">Jenis Angkutan</label>
+    <select id="jenis">
+      <option value="">-- Pilih Jenis Angkutan --</option>
+      <option value="pindahan">Pindahan</option>
+      <option value="barang">Barang</option>
+    </select>
+
+    <div class="grid">
+      <div>
+        <label for="jemput">Titik Jemput</label>
+        <select id="jemput">
+          <option value="">-- Pilih Jemput --</option>
+          <option value="tembilahan">Tembilahan</option>
+          <option value="tempuling">Tempuling</option>
+          <option value="rumbai">Rumbai</option>
+          <option value="kempas">Kempas</option>
+          <option value="inhu">Inhu (Rengat & Sekitar)</option>
+          <option value="telukpinang">Teluk Pinang</option>
+        </select>
+      </div>
+      <div>
+        <label for="tujuan">Tujuan</label>
+        <select id="tujuan">
+          <option value="">-- Pilih Tujuan --</option>
+          <option value="tembilahan">Tembilahan</option>
+          <option value="tempuling">Tempuling</option>
+          <option value="rumbai">Rumbai</option>
+          <option value="kempas">Kempas</option>
+          <option value="inhu">Inhu (Rengat & Sekitar)</option>
+          <option value="telukpinang">Teluk Pinang</option>
+        </select>
+      </div>
+    </div>
+
+    <label for="crew">Muat & Bongkar</label>
+    <select id="crew">
+      <option value="0">Muat Bongkar Sendiri</option>
+      <option value="50000">1 Orang Tenaga Buruh (bantu muat & bongkar)</option>
+      <option value="100000">2 Orang Tenaga Buruh (terima beres)</option>
+    </select>
+
+    <button onclick="hitung()">Hitung Perkiraan</button>
+
+    <div id="hasil" class="result" style="display:none"></div>
+    <p class="muted">*Harga bersifat perkiraan, dapat berubah jika berat/volume berlebihan atau akses sulit.</p>
+  </div>
+
+  <script>
+    // === TARIF TABEL MANUAL PER ARMADA ===
+    const tarifPickup = {
+      "tembilahan-tembilahan":150000,
+      "tembilahan-tempuling":300000,
+      "tempuling-tembilahan":300000,
+      "tembilahan-rumbai":350000,
+      "rumbai-tembilahan":350000,
+      "tembilahan-kempas":450000,
+      "kempas-tembilahan":450000,
+      "tembilahan-inhu":1000000,
+      "inhu-tembilahan":1000000,
+      "tembilahan-telukpinang":500000,
+      "telukpinang-tembilahan":500000,
+    };
+
+    const tarifViar = {
+      "tembilahan-tembilahan":100000,
+      "tembilahan-tempuling":250000,
+      "tempuling-tembilahan":250000,
+      "tembilahan-rumbai":300000,
+      "rumbai-tembilahan":300000,
+      "tembilahan-kempas":400000,
+      "kempas-tembilahan":400000,
+      "tembilahan-inhu":950000,
+      "inhu-tembilahan":950000,
+      "tembilahan-telukpinang":450000,
+      "telukpinang-tembilahan":450000,
+    };
+
+    const DEFAULT_PICKUP = 150000;
+    const DEFAULT_VIAR = 100000;
+
+    function rupiah(n){return "Rp "+(n||0).toLocaleString('id-ID');}
+    function capitalize(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+    function formatLokasi(k){
+      const map={tembilahan:'Tembilahan',tempuling:'Tempuling',rumbai:'Rumbai',kempas:'Kempas',inhu:'Inhu (Rengat & Sekitar)',telukpinang:'Teluk Pinang'};
+      return map[k]||k;
+    }
+
+    let lastCalc=null;
+
+    function getBase(armada,jemput,tujuan){
+      const key=`${jemput}-${tujuan}`;
+      if(armada==="pickup") return tarifPickup[key]??DEFAULT_PICKUP;
+      if(armada==="viar") return tarifViar[key]??DEFAULT_VIAR;
+      return 0;
+    }
+
+    function hitung(){
+      const armada=document.getElementById('armada').value;
+      const jenis=document.getElementById('jenis').value;
+      const jemput=document.getElementById('jemput').value;
+      const tujuan=document.getElementById('tujuan').value;
+      const crew=parseInt(document.getElementById('crew').value,10);
+      const output=document.getElementById('hasil');
+
+      if(!armada||!jenis||!jemput||!tujuan){
+        output.style.display='block';
+        output.innerHTML="⚠️ Mohon lengkapi semua pilihan.";
+        lastCalc=null;
+        smoothScrollTo(output);
+        return;
+      }
+
+      const base=getBase(armada,jemput,tujuan);
+      const biayaCrew=crew;
+      const total=base+biayaCrew;
+
+      lastCalc={armada,jenis,jemput,tujuan,base,biayaCrew,total};
+
+      output.style.display='block';
+      output.innerHTML=`
+        <div class="breakdown">
+          <strong>Ringkasan Pesanan</strong>
+          <div>Armada: <strong>${armada.toUpperCase()}</strong> <span class="badge">${capitalize(jenis)}</span></div>
+          <div>Rute: <strong>${formatLokasi(jemput)}</strong> → <strong>${formatLokasi(tujuan)}</strong></div>
+          <ul class="list money">
+            <li><span>Tarif dasar</span><span>${rupiah(base)}</span></li>
+            <li><span>Tenaga muat & bongkar</span><span>${rupiah(biayaCrew)}</span></li>
+          </ul>
+          <div class="total-line money">
+            <span>Total Perkiraan</span>
+            <span style="font-size:1.2rem">${rupiah(total)}</span>
+          </div>
+          <div class="actions-inline">
+            <button class="btn-wa" onclick="orderWA()">Chat WhatsApp (Order)</button>
+          </div>
+        </div>
+      `;
+
+      smoothScrollTo(output);
+    }
+
+    function orderWA(){
+      if(!lastCalc) return;
+      const {armada,jenis,jemput,tujuan,base,biayaCrew,total}=lastCalc;
+
+      const template=
+`Halo InhilCargo, saya ingin order:
+- Armada: ${armada.toUpperCase()}
+- Jenis Angkutan: ${capitalize(jenis)}
+- Rute: ${formatLokasi(jemput)} → ${formatLokasi(tujuan)}
+
+Rincian Biaya:
+• Tarif Dasar: ${rupiah(base)}
+• Tenaga Muat & Bongkar: ${rupiah(biayaCrew)}
+TOTAL PERKIRAAN: ${rupiah(total)}
+
+Data Pemesan:
+Nama:
+No. HP:
+Alamat Jemput:
+Tanggal/Jam Jemput:
+Catatan Tambahan:`;
+
+      const url="https://wa.me/6285187715318?text="+encodeURIComponent(template);
+      window.open(url,'_blank');
+    }
+
+    function smoothScrollTo(el){
+      requestAnimationFrame(()=>{el.scrollIntoView({behavior:'smooth',block:'start'});});
+    }
+  </script>
+</body>
+</html>
