@@ -366,10 +366,133 @@
     
     .dark-mode .estimate-time{background:#1e3a5f;color:#93c5fd}
     
+    .modal{
+      display:none;
+      position:fixed;
+      top:0;left:0;right:0;bottom:0;
+      background:rgba(0,0,0,0.6);
+      z-index:1000;
+      justify-content:center;
+      align-items:center;
+      padding:20px;
+      backdrop-filter:blur(5px);
+      animation:fadeIn 0.3s;
+    }
+    
+    .modal.active{display:flex}
+    
+    .modal-content{
+      background:#fff;
+      border-radius:20px;
+      padding:28px;
+      max-width:500px;
+      width:100%;
+      max-height:90vh;
+      overflow-y:auto;
+      box-shadow:0 20px 60px rgba(0,0,0,0.3);
+      animation:slideUp 0.3s ease-out;
+      position:relative;
+    }
+    
+    .dark-mode .modal-content{background:#0f3460;color:#e4e4e4}
+    
+    .modal-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:20px;
+      padding-bottom:16px;
+      border-bottom:2px solid #e5e7eb;
+    }
+    
+    .dark-mode .modal-header{border-color:#2c3e50}
+    
+    .modal-header h2{
+      color:#4c51bf;
+      font-size:1.4rem;
+      margin:0;
+    }
+    
+    .dark-mode .modal-header h2{color:#f39c12}
+    
+    .close-modal{
+      background:none;
+      border:none;
+      font-size:1.8rem;
+      cursor:pointer;
+      color:#6b7280;
+      width:auto;
+      padding:4px;
+      line-height:1;
+      transition:transform 0.2s;
+    }
+    
+    .close-modal:hover{
+      transform:rotate(90deg);
+      color:#ef4444;
+    }
+    
+    .form-input{
+      width:100%;
+      padding:12px 16px;
+      border-radius:12px;
+      border:2px solid #e5e7eb;
+      font-size:1rem;
+      background:#fff;
+      transition:all 0.3s;
+      font-family:inherit;
+    }
+    
+    .dark-mode .form-input{
+      background:#1a1a2e;
+      color:#e4e4e4;
+      border-color:#2c3e50;
+    }
+    
+    .form-input:focus{
+      outline:none;
+      border-color:#4c51bf;
+      box-shadow:0 0 0 3px rgba(76,81,191,0.1);
+    }
+    
+    textarea.form-input{
+      resize:vertical;
+      min-height:80px;
+    }
+    
+    .order-summary{
+      background:linear-gradient(135deg,#f3f4f6,#e5e7eb);
+      padding:16px;
+      border-radius:12px;
+      margin-bottom:20px;
+      border-left:4px solid #4c51bf;
+    }
+    
+    .dark-mode .order-summary{
+      background:linear-gradient(135deg,#1a1a2e,#16213e);
+      border-color:#f39c12;
+    }
+    
+    .order-summary-title{
+      font-weight:700;
+      margin-bottom:10px;
+      color:#1f2937;
+    }
+    
+    .dark-mode .order-summary-title{color:#f39c12}
+    
+    .order-summary-item{
+      display:flex;
+      justify-content:space-between;
+      padding:6px 0;
+      font-size:0.95rem;
+    }
+    
     @media(max-width:640px){
       .container{padding:20px}
       h1{font-size:1.5rem}
       .grid{grid-template-columns:1fr}
+      .modal-content{padding:20px}
     }
   </style>
 </head>
@@ -385,7 +508,7 @@
     <div class="form-group">
       <label for="armada"><span class="label-icon">🚛</span> Pilih Armada</label>
       <select id="armada" onchange="updateForm()">
-        <option value="">Pilih Armada</option>
+        <option value="">-- Pilih Armada --</option>
         <option value="viar">VIAR (Kendaraan Kecil)</option>
         <option value="pickup">PICKUP (Kendaraan Sedang)</option>
       </select>
@@ -394,7 +517,7 @@
     <div class="form-group">
       <label for="jenis"><span class="label-icon">📦</span> Jenis Angkutan</label>
       <select id="jenis" onchange="updateForm()">
-        <option value="">Pilih Jenis Angkutan</option>
+        <option value="">-- Pilih Jenis Angkutan --</option>
         <option value="pindahan">Pindahan Rumah/Kantor</option>
         <option value="barang">Pengiriman Barang</option>
       </select>
@@ -404,7 +527,7 @@
       <div class="form-group">
         <label for="jemput"><span class="label-icon">📍</span> Titik Jemput</label>
         <select id="jemput" onchange="updateForm()">
-          <option value="">Pilih Jemput</option>
+          <option value="">-- Pilih Jemput --</option>
           <option value="tembilahan">Tembilahan</option>
           <option value="tempuling">Tempuling</option>
           <option value="rumbai">Rumbai</option>
@@ -416,7 +539,7 @@
       <div class="form-group">
         <label for="tujuan"><span class="label-icon">🎯</span> Tujuan</label>
         <select id="tujuan" onchange="updateForm()">
-          <option value="">Pilih Tujuan</option>
+          <option value="">-- Pilih Tujuan --</option>
           <option value="tembilahan">Tembilahan</option>
           <option value="tempuling">Tempuling</option>
           <option value="rumbai">Rumbai</option>
@@ -452,6 +575,52 @@
     </div>
     
     <p class="muted">*Harga bersifat perkiraan dan dapat berubah jika berat/volume berlebihan atau kondisi akses sulit.</p>
+  </div>
+
+  <!-- Modal Form Order -->
+  <div class="modal" id="orderModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>📝 Data Pemesanan</h2>
+        <button class="close-modal" onclick="closeModal()">×</button>
+      </div>
+      
+      <div class="order-summary" id="modalSummary"></div>
+      
+      <div class="form-group">
+        <label for="namaPemesan"><span class="label-icon">👤</span> Nama Lengkap</label>
+        <input type="text" id="namaPemesan" class="form-input" placeholder="Masukkan nama lengkap" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="nohpPemesan"><span class="label-icon">📱</span> Nomor HP/WhatsApp</label>
+        <input type="tel" id="nohpPemesan" class="form-input" placeholder="Contoh: 08123456789" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="alamatJemput"><span class="label-icon">🏠</span> Alamat Lengkap Jemput</label>
+        <textarea id="alamatJemput" class="form-input" placeholder="Masukkan alamat lengkap penjemputan (Jalan, RT/RW, Patokan)" required></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label for="alamatTujuan"><span class="label-icon">📍</span> Alamat Lengkap Tujuan</label>
+        <textarea id="alamatTujuan" class="form-input" placeholder="Masukkan alamat lengkap tujuan pengiriman" required></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label for="tanggalJemput"><span class="label-icon">📅</span> Tanggal & Jam Jemput</label>
+        <input type="datetime-local" id="tanggalJemput" class="form-input" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="catatanTambahan"><span class="label-icon">📝</span> Catatan Tambahan (Opsional)</label>
+        <textarea id="catatanTambahan" class="form-input" placeholder="Contoh: Barang pecah belah, butuh bantuan naik tangga, dll"></textarea>
+      </div>
+      
+      <button class="btn-wa" onclick="sendToWA()">
+        <span style="position:relative;z-index:1">✅ Kirim ke WhatsApp</span>
+      </button>
+    </div>
   </div>
 
   <script>
@@ -607,35 +776,134 @@
 
     function orderWA(){
       if(!lastCalc) return;
+      
+      // Show modal with order summary
+      const modal = document.getElementById('orderModal');
+      const summary = document.getElementById('modalSummary');
+      const {armada,jenis,jemput,tujuan,base,biayaCrew,total,waktu}=lastCalc;
+      
+      summary.innerHTML = `
+        <div class="order-summary-title">📦 Ringkasan Pesanan Anda</div>
+        <div class="order-summary-item">
+          <span>Armada:</span>
+          <strong>${armada.toUpperCase()}</strong>
+        </div>
+        <div class="order-summary-item">
+          <span>Jenis:</span>
+          <strong>${capitalize(jenis)}</strong>
+        </div>
+        <div class="order-summary-item">
+          <span>Rute:</span>
+          <strong>${formatLokasi(jemput)} ➜ ${formatLokasi(tujuan)}</strong>
+        </div>
+        <div class="order-summary-item">
+          <span>Estimasi Waktu:</span>
+          <strong>${waktu}</strong>
+        </div>
+        <div class="order-summary-item" style="border-top:2px dashed #cbd5e1;margin-top:8px;padding-top:8px">
+          <span style="font-size:1.1rem">Total Biaya:</span>
+          <strong style="color:#4c51bf;font-size:1.2rem">${rupiah(total)}</strong>
+        </div>
+      `;
+      
+      // Set minimum datetime to current time
+      const now = new Date();
+      now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+      document.getElementById('tanggalJemput').min = now.toISOString().slice(0,16);
+      
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeModal(){
+      const modal = document.getElementById('orderModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    
+    function sendToWA(){
+      if(!lastCalc) return;
+      
+      const nama = document.getElementById('namaPemesan').value.trim();
+      const nohp = document.getElementById('nohpPemesan').value.trim();
+      const alamatJemput = document.getElementById('alamatJemput').value.trim();
+      const alamatTujuan = document.getElementById('alamatTujuan').value.trim();
+      const tanggal = document.getElementById('tanggalJemput').value;
+      const catatan = document.getElementById('catatanTambahan').value.trim();
+      
+      // Validation
+      if(!nama || !nohp || !alamatJemput || !alamatTujuan || !tanggal){
+        alert('⚠️ Mohon lengkapi semua data yang wajib diisi!');
+        return;
+      }
+      
+      // Format tanggal
+      const dateObj = new Date(tanggal);
+      const options = { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      };
+      const tanggalFormat = dateObj.toLocaleDateString('id-ID', options);
+      
       const {armada,jenis,jemput,tujuan,base,biayaCrew,total,waktu}=lastCalc;
 
       const template=
-`Halo InhilCargo! 👋 Saya ingin order:
+`🚚 *INHILCARGO - PESANAN BARU*
 
-🚛 DETAIL PESANAN:
-━━━━━━━━━━━━━━━━━━━
-• Armada: ${armada.toUpperCase()}
-• Jenis: ${capitalize(jenis)}
-• Rute: ${formatLokasi(jemput)} ➜ ${formatLokasi(tujuan)}
-• Estimasi Waktu: ${waktu}
+━━━━━━━━━━━━━━━━━━━━━━━
+📦 *DETAIL PESANAN*
+━━━━━━━━━━━━━━━━━━━━━━━
+🚛 Armada: *${armada.toUpperCase()}*
+📦 Jenis Angkutan: *${capitalize(jenis)}*
+📍 Rute: *${formatLokasi(jemput)}* ➜ *${formatLokasi(tujuan)}*
+⏱️ Estimasi Waktu: *${waktu}*
 
-💰 RINCIAN BIAYA:
-━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━
+👤 *DATA PEMESAN*
+━━━━━━━━━━━━━━━━━━━━━━━
+Nama: *${nama}*
+No. HP/WA: *${nohp}*
+
+━━━━━━━━━━━━━━━━━━━━━━━
+📍 *DETAIL ALAMAT*
+━━━━━━━━━━━━━━━━━━━━━━━
+🏠 Alamat Jemput:
+${alamatJemput}
+
+🎯 Alamat Tujuan:
+${alamatTujuan}
+
+📅 Jadwal Jemput:
+${tanggalFormat}
+
+${catatan ? `📝 Catatan:\n${catatan}\n\n` : ''}━━━━━━━━━━━━━━━━━━━━━━━
+💰 *RINCIAN BIAYA*
+━━━━━━━━━━━━━━━━━━━━━━━
 • Tarif Dasar: ${rupiah(base)}
 • Muat & Bongkar: ${rupiah(biayaCrew)}
-━━━━━━━━━━━━━━━━━━━
-TOTAL: ${rupiah(total)}
+━━━━━━━━━━━━━━━━━━━━━━━
+💵 *TOTAL BIAYA: ${rupiah(total)}*
+━━━━━━━━━━━━━━━━━━━━━━━
 
-👤 DATA PEMESAN:
-━━━━━━━━━━━━━━━━━━━
-Nama: 
-No. HP: 
-Alamat Jemput: 
-Tanggal/Jam: 
-Catatan: `;
+Mohon konfirmasi ketersediaan armada. Terima kasih! 🙏`;
 
       const url="https://wa.me/6285187715318?text="+encodeURIComponent(template);
       window.open(url,'_blank');
+      
+      // Reset form and close modal
+      closeModal();
+      setTimeout(()=>{
+        document.getElementById('namaPemesan').value='';
+        document.getElementById('nohpPemesan').value='';
+        document.getElementById('alamatJemput').value='';
+        document.getElementById('alamatTujuan').value='';
+        document.getElementById('tanggalJemput').value='';
+        document.getElementById('catatanTambahan').value='';
+      },300);
     }
 
     function toggleTheme(){
@@ -649,6 +917,27 @@ Catatan: `;
         el.scrollIntoView({behavior:'smooth',block:'center'});
       });
     }
+    
+    // Close modal when clicking outside
+    document.getElementById('orderModal').addEventListener('click', function(e){
+      if(e.target === this){
+        closeModal();
+      }
+    });
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape'){
+        closeModal();
+      }
+    });
+    
+    // Prevent scroll on number input
+    document.querySelectorAll('input[type="tel"], input[type="datetime-local"]').forEach(input => {
+      input.addEventListener('wheel', function(e){
+        e.preventDefault();
+      });
+    });
   </script>
 </body>
 </html>
