@@ -666,9 +666,6 @@
       "telukpinang-tembilahan":"2-3 jam",
     };
 
-    const DEFAULT_PICKUP = 150000;
-    const DEFAULT_VIAR = 100000;
-
     let lastCalc = null;
     let isDark = false;
 
@@ -688,9 +685,9 @@
 
     function getBase(armada,jemput,tujuan){
       const key=`${jemput}-${tujuan}`;
-      if(armada==="pickup") return tarifPickup[key]??DEFAULT_PICKUP;
-      if(armada==="viar") return tarifViar[key]??DEFAULT_VIAR;
-      return 0;
+      if(armada==="pickup") return tarifPickup[key]??null;
+      if(armada==="viar") return tarifViar[key]??null;
+      return null;
     }
     
     function getEstimasiWaktu(jemput,tujuan){
@@ -731,6 +728,30 @@
 
       setTimeout(()=>{
         const base=getBase(armada,jemput,tujuan);
+        
+        // Cek jika rute tidak tersedia
+        if(base === null){
+          loading.style.display='none';
+          output.style.display='block';
+          output.innerHTML=`
+            <div class="info-box" style="border-left:4px solid #ef4444;background:#fee2e2;text-align:center;padding:24px">
+              <div style="font-size:3rem;margin-bottom:12px">📞</div>
+              <h3 style="color:#991b1b;margin-bottom:12px;font-size:1.2rem">Rute Tidak Tersedia dalam Sistem</h3>
+              <p style="color:#7f1d1d;margin-bottom:16px;line-height:1.6">
+                Maaf, rute <strong>${formatLokasi(jemput)} ➜ ${formatLokasi(tujuan)}</strong> belum tersedia dalam sistem kami.
+              </p>
+              <p style="color:#7f1d1d;margin-bottom:20px">
+                Silakan hubungi admin untuk informasi tarif khusus rute ini.
+              </p>
+              <button class="btn-wa" onclick="contactAdmin('${armada}','${jenis}','${jemput}','${tujuan}')">
+                <span style="position:relative;z-index:1">💬 Hubungi Admin via WhatsApp</span>
+              </button>
+            </div>
+          `;
+          smoothScrollTo(output);
+          return;
+        }
+        
         const biayaCrew=crew;
         const total=base+biayaCrew;
         const waktu=getEstimasiWaktu(jemput,tujuan);
@@ -813,6 +834,22 @@
       
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
+    }
+    
+    function contactAdmin(armada,jenis,jemput,tujuan){
+      const template=
+`🚚 *INHILCARGO - PERMINTAAN INFO TARIF*
+
+Halo Admin, saya ingin menanyakan tarif untuk:
+
+🚛 Armada: *${armada.toUpperCase()}*
+📦 Jenis Angkutan: *${capitalize(jenis)}*
+📍 Rute: *${formatLokasi(jemput)}* ➜ *${formatLokasi(tujuan)}*
+
+Mohon informasi ketersediaan dan tarifnya. Terima kasih! 🙏`;
+
+      const url="https://wa.me/6285187715318?text="+encodeURIComponent(template);
+      window.open(url,'_blank');
     }
     
     function closeModal(){
@@ -940,6 +977,4 @@ Mohon konfirmasi ketersediaan armada. Terima kasih! 🙏`;
     });
   </script>
 </body>
-
 </html>
-
