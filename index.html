@@ -5,59 +5,406 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>INHILCARGO - Jasa Angkutan Tembilahan</title>
   <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    
     body{
-      font-family:'Segoe UI',sans-serif;
-      background:linear-gradient(135deg,#667eea,#764ba2);
-      min-height:100vh;display:flex;justify-content:center;align-items:center;color:#333;padding:20px;
+      font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+      background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:20px;
+      position:relative;
+      overflow-x:hidden;
     }
+    
+    body::before{
+      content:'';
+      position:absolute;
+      top:0;left:0;right:0;bottom:0;
+      background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.627 0l.83.828-1.415 1.415L51.8 0h2.827zM5.373 0l-.83.828L5.96 2.243 8.2 0H5.374zM48.97 0l3.657 3.657-1.414 1.414L46.143 0h2.828zM11.03 0L7.372 3.657 8.787 5.07 13.857 0H11.03zm32.284 0L49.8 6.485 48.384 7.9l-7.9-7.9h2.83zM16.686 0L10.2 6.485 11.616 7.9l7.9-7.9h-2.83zm20.97 0l9.315 9.314-1.414 1.414L34.828 0h2.83zM22.344 0L13.03 9.314l1.414 1.414L25.172 0h-2.83zM32 0l12.142 12.142-1.414 1.414L30 .828 17.272 13.556 15.858 12.14 28 0h4zM.284 0l28 28-1.414 1.414L0 2.544V0h.284zM0 5.373l25.456 25.455-1.414 1.415L0 8.2V5.374zm0 5.656l22.627 22.627-1.414 1.414L0 13.86v-2.83zm0 5.656l19.8 19.8-1.415 1.413L0 19.514v-2.83zm0 5.657l16.97 16.97-1.414 1.415L0 25.172v-2.83zM0 28l14.142 14.142-1.414 1.414L0 30.828V28zm0 5.657L11.314 44.97 9.9 46.386l-9.9-9.9v-2.828zm0 5.657L8.485 47.8 7.07 49.212 0 42.143v-2.83zm0 5.657l5.657 5.657-1.414 1.415L0 47.8v-2.83zm0 5.657l2.828 2.83-1.414 1.414L0 53.456v-2.83zM54.627 60L30 35.373 5.373 60H8.2L30 38.2 51.8 60h2.827zm-5.656 0L30 41.03 11.03 60h2.828L30 43.858 46.142 60h2.83zm-5.656 0L30 46.686 16.686 60h2.83L30 49.515 40.485 60h2.83zm-5.657 0L30 52.343 22.344 60h2.83L30 55.172 34.828 60h2.83zM32 60l-2-2-2 2h4zM59.716 0l-28 28 1.414 1.414L60 2.544V0h-.284zM60 5.373L34.544 30.828l1.414 1.415L60 8.2V5.374zm0 5.656L37.373 33.656l1.414 1.414L60 13.86v-2.83zm0 5.656L40.2 36.485l1.415 1.413L60 19.514v-2.83zm0 5.657L43.03 38.97l1.414 1.415L60 25.172v-2.83zM60 28L45.858 42.142l1.414 1.414L60 30.828V28zm0 5.657L48.686 44.97l1.415 1.415 9.9-9.9v-2.828zm0 5.657L51.515 47.8l1.414 1.413 7.07-7.07v-2.83zm0 5.657l-5.657 5.657 1.414 1.415L60 47.8v-2.83zm0 5.657l-2.828 2.83 1.414 1.414L60 53.456v-2.83z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+      animation:bgMove 30s linear infinite;
+      z-index:0;
+    }
+    
+    @keyframes bgMove{
+      0%{background-position:0 0}
+      100%{background-position:60px 60px}
+    }
+    
+    .dark-mode{
+      background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);
+    }
+    
+    .dark-mode .container{
+      background:#0f3460;
+      color:#e4e4e4;
+      box-shadow:0 10px 60px rgba(0,0,0,.5);
+    }
+    
+    .dark-mode h1{color:#f39c12}
+    .dark-mode select,.dark-mode input{background:#1a1a2e;color:#e4e4e4;border-color:#2c3e50}
+    .dark-mode .result{background:#1a1a2e}
+    .dark-mode .badge{background:#2c3e50;color:#ecf0f1}
+    .dark-mode .list li{border-color:#2c3e50}
+    
     .container{
-      background:#fff;padding:28px;border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,.15);
-      width:100%;max-width:560px
+      background:#fff;
+      padding:32px;
+      border-radius:24px;
+      box-shadow:0 20px 60px rgba(0,0,0,.2);
+      width:100%;
+      max-width:600px;
+      position:relative;
+      z-index:1;
+      animation:slideUp 0.5s ease-out;
     }
-    h1{color:#4c51bf;text-align:center;margin-bottom:18px}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    label{display:block;font-weight:600;margin-top:10px}
-    select,button{
-      width:100%;padding:10px;margin-top:6px;border-radius:10px;border:1px solid #d1d5db;font-size:1rem;background:#fff
+    
+    @keyframes slideUp{
+      from{opacity:0;transform:translateY(30px)}
+      to{opacity:1;transform:translateY(0)}
     }
-    button{background:#4c51bf;color:#fff;font-weight:700;margin-top:18px;cursor:pointer}
-    button:hover{background:#5a67d8}
-    .btn-wa{background:#25D366}
-    .btn-wa:hover{background:#1ebe5d}
-    .result{margin-top:16px;background:#edf2f7;padding:16px;border-radius:12px}
-    .muted{color:#6b7280;font-size:.9rem}
-    .breakdown{line-height:1.6}
+    
+    .header{
+      text-align:center;
+      margin-bottom:24px;
+      position:relative;
+    }
+    
+    .truck-icon{
+      font-size:3rem;
+      margin-bottom:8px;
+      animation:truck 2s ease-in-out infinite;
+    }
+    
+    @keyframes truck{
+      0%,100%{transform:translateX(0)}
+      50%{transform:translateX(10px)}
+    }
+    
+    h1{
+      color:#4c51bf;
+      font-size:1.8rem;
+      margin-bottom:8px;
+      font-weight:700;
+    }
+    
+    .subtitle{
+      color:#6b7280;
+      font-size:0.9rem;
+    }
+    
+    .theme-toggle{
+      position:absolute;
+      top:0;
+      right:0;
+      background:none;
+      border:none;
+      font-size:1.5rem;
+      cursor:pointer;
+      padding:8px;
+      border-radius:50%;
+      transition:transform 0.3s;
+    }
+    
+    .theme-toggle:hover{
+      transform:rotate(20deg);
+    }
+    
+    .form-group{
+      margin-bottom:16px;
+      animation:fadeIn 0.5s ease-out backwards;
+    }
+    
+    .form-group:nth-child(2){animation-delay:0.1s}
+    .form-group:nth-child(3){animation-delay:0.2s}
+    .form-group:nth-child(4){animation-delay:0.3s}
+    
+    @keyframes fadeIn{
+      from{opacity:0;transform:translateX(-20px)}
+      to{opacity:1;transform:translateX(0)}
+    }
+    
+    label{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-weight:600;
+      margin-bottom:8px;
+      color:#374151;
+      font-size:0.95rem;
+    }
+    
+    .dark-mode label{color:#e4e4e4}
+    
+    .label-icon{font-size:1.2rem}
+    
+    select,input{
+      width:100%;
+      padding:12px 16px;
+      border-radius:12px;
+      border:2px solid #e5e7eb;
+      font-size:1rem;
+      background:#fff;
+      transition:all 0.3s;
+      cursor:pointer;
+    }
+    
+    select:focus,input:focus{
+      outline:none;
+      border-color:#4c51bf;
+      box-shadow:0 0 0 3px rgba(76,81,191,0.1);
+      transform:translateY(-2px);
+    }
+    
+    select:hover,input:hover{border-color:#a5b4fc}
+    
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+      margin-bottom:16px;
+    }
+    
+    button{
+      width:100%;
+      padding:14px;
+      border-radius:12px;
+      border:none;
+      font-size:1rem;
+      font-weight:700;
+      cursor:pointer;
+      transition:all 0.3s;
+      position:relative;
+      overflow:hidden;
+    }
+    
+    button::before{
+      content:'';
+      position:absolute;
+      top:50%;
+      left:50%;
+      width:0;
+      height:0;
+      border-radius:50%;
+      background:rgba(255,255,255,0.3);
+      transform:translate(-50%,-50%);
+      transition:width 0.6s,height 0.6s;
+    }
+    
+    button:hover::before{
+      width:300px;
+      height:300px;
+    }
+    
+    .btn-primary{
+      background:linear-gradient(135deg,#4c51bf,#5a67d8);
+      color:#fff;
+      margin-top:8px;
+    }
+    
+    .btn-primary:hover{
+      transform:translateY(-2px);
+      box-shadow:0 10px 25px rgba(76,81,191,0.3);
+    }
+    
+    .btn-primary:active{
+      transform:translateY(0);
+    }
+    
+    .btn-wa{
+      background:linear-gradient(135deg,#25D366,#1ebe5d);
+      color:#fff;
+    }
+    
+    .btn-wa:hover{
+      transform:translateY(-2px);
+      box-shadow:0 10px 25px rgba(37,211,102,0.3);
+    }
+    
+    .loading{
+      display:none;
+      text-align:center;
+      padding:20px;
+    }
+    
+    .spinner{
+      border:4px solid #f3f4f6;
+      border-top:4px solid #4c51bf;
+      border-radius:50%;
+      width:40px;
+      height:40px;
+      animation:spin 1s linear infinite;
+      margin:0 auto 10px;
+    }
+    
+    @keyframes spin{
+      0%{transform:rotate(0deg)}
+      100%{transform:rotate(360deg)}
+    }
+    
+    .result{
+      margin-top:20px;
+      background:linear-gradient(135deg,#edf2f7,#e2e8f0);
+      padding:20px;
+      border-radius:16px;
+      animation:slideDown 0.4s ease-out;
+    }
+    
+    @keyframes slideDown{
+      from{opacity:0;transform:translateY(-20px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    
+    .breakdown{line-height:1.8}
+    
+    .breakdown>strong{
+      display:block;
+      font-size:1.2rem;
+      margin-bottom:12px;
+      color:#1f2937;
+    }
+    
+    .dark-mode .breakdown>strong{color:#f39c12}
+    
+    .info-box{
+      background:#fff;
+      padding:12px;
+      border-radius:10px;
+      margin:10px 0;
+      border-left:4px solid #4c51bf;
+    }
+    
+    .dark-mode .info-box{background:#1a1a2e;border-color:#f39c12}
+    
+    .badge{
+      display:inline-block;
+      background:#e0e7ff;
+      color:#4338ca;
+      border-radius:999px;
+      padding:4px 12px;
+      font-size:0.85rem;
+      font-weight:600;
+      margin-left:8px;
+    }
+    
+    .list{
+      margin:12px 0;
+      padding:0;
+      list-style:none;
+    }
+    
+    .list li{
+      display:flex;
+      justify-content:space-between;
+      padding:10px 0;
+      border-bottom:1px dashed #cbd5e1;
+    }
+    
+    .list li:last-child{border:none}
+    
     .money{font-variant-numeric:tabular-nums}
-    .list{margin:8px 0 0 0;padding:0;list-style:none}
-    .list li{display:flex;justify-content:space-between;border-bottom:1px dashed #cbd5e1;padding:6px 0}
-    .badge{display:inline-block;background:#e2e8f0;color:#334155;border-radius:999px;padding:2px 10px;font-size:.8rem;margin-left:6px}
-    .total-line{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-weight:800}
-    .actions-inline{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+    
+    .total-line{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:16px;
+      padding:16px;
+      background:#fff;
+      border-radius:12px;
+      font-weight:800;
+      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    }
+    
+    .dark-mode .total-line{background:#0f3460}
+    
+    .actions-inline{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:12px;
+    }
+    
+    .muted{
+      color:#6b7280;
+      font-size:0.85rem;
+      text-align:center;
+      margin-top:16px;
+      padding:12px;
+      background:rgba(255,255,255,0.5);
+      border-radius:10px;
+    }
+    
+    .dark-mode .muted{background:rgba(0,0,0,0.2);color:#9ca3af}
+    
+    .tips{
+      margin-top:20px;
+      padding:16px;
+      background:#fef3c7;
+      border-radius:12px;
+      border-left:4px solid #f59e0b;
+    }
+    
+    .dark-mode .tips{background:#2c1810;border-color:#f39c12}
+    
+    .tips strong{color:#92400e}
+    .dark-mode .tips strong{color:#f39c12}
+    
+    .estimate-time{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      background:#dbeafe;
+      color:#1e40af;
+      padding:6px 12px;
+      border-radius:8px;
+      font-size:0.9rem;
+      margin-top:8px;
+    }
+    
+    .dark-mode .estimate-time{background:#1e3a5f;color:#93c5fd}
+    
+    @media(max-width:640px){
+      .container{padding:20px}
+      h1{font-size:1.5rem}
+      .grid{grid-template-columns:1fr}
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>INFORMASI TARIF INHILCARGO</h1>
+    <div class="header">
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">🌙</button>
+      <div class="truck-icon">🚚</div>
+      <h1>INHILCARGO</h1>
+      <p class="subtitle">Jasa Angkutan Terpercaya Tembilahan</p>
+    </div>
 
-    <label for="armada">Pilih Armada</label>
-    <select id="armada">
-      <option value="">-- Pilih Armada --</option>
-      <option value="viar">VIAR</option>
-      <option value="pickup">PICKUP</option>
-    </select>
+    <div class="form-group">
+      <label for="armada"><span class="label-icon">🚛</span> Pilih Armada</label>
+      <select id="armada" onchange="updateForm()">
+        <option value="">Pilih Armada</option>
+        <option value="viar">VIAR (Kendaraan Kecil)</option>
+        <option value="pickup">PICKUP (Kendaraan Sedang)</option>
+      </select>
+    </div>
 
-    <label for="jenis">Jenis Angkutan</label>
-    <select id="jenis">
-      <option value="">-- Pilih Jenis Angkutan --</option>
-      <option value="pindahan">Pindahan</option>
-      <option value="barang">Barang</option>
-    </select>
+    <div class="form-group">
+      <label for="jenis"><span class="label-icon">📦</span> Jenis Angkutan</label>
+      <select id="jenis" onchange="updateForm()">
+        <option value="">Pilih Jenis Angkutan</option>
+        <option value="pindahan">Pindahan Rumah/Kantor</option>
+        <option value="barang">Pengiriman Barang</option>
+      </select>
+    </div>
 
     <div class="grid">
-      <div>
-        <label for="jemput">Titik Jemput</label>
-        <select id="jemput">
-          <option value="">-- Pilih Jemput --</option>
+      <div class="form-group">
+        <label for="jemput"><span class="label-icon">📍</span> Titik Jemput</label>
+        <select id="jemput" onchange="updateForm()">
+          <option value="">Pilih Jemput</option>
           <option value="tembilahan">Tembilahan</option>
           <option value="tempuling">Tempuling</option>
           <option value="rumbai">Rumbai</option>
@@ -66,10 +413,10 @@
           <option value="telukpinang">Teluk Pinang</option>
         </select>
       </div>
-      <div>
-        <label for="tujuan">Tujuan</label>
-        <select id="tujuan">
-          <option value="">-- Pilih Tujuan --</option>
+      <div class="form-group">
+        <label for="tujuan"><span class="label-icon">🎯</span> Tujuan</label>
+        <select id="tujuan" onchange="updateForm()">
+          <option value="">Pilih Tujuan</option>
           <option value="tembilahan">Tembilahan</option>
           <option value="tempuling">Tempuling</option>
           <option value="rumbai">Rumbai</option>
@@ -80,21 +427,34 @@
       </div>
     </div>
 
-    <label for="crew">Muat & Bongkar</label>
-    <select id="crew">
-      <option value="0">Muat Bongkar Sendiri</option>
-      <option value="50000">1 Orang Tenaga Buruh (bantu muat & bongkar)</option>
-      <option value="100000">2 Orang Tenaga Buruh (terima beres)</option>
-    </select>
+    <div class="form-group">
+      <label for="crew"><span class="label-icon">👷</span> Muat & Bongkar</label>
+      <select id="crew">
+        <option value="0">Muat Bongkar Sendiri</option>
+        <option value="50000">1 Orang Tenaga Buruh (bantu muat & bongkar)</option>
+        <option value="100000">2 Orang Tenaga Buruh (terima beres)</option>
+      </select>
+    </div>
 
-    <button onclick="hitung()">Hitung Perkiraan</button>
+    <button class="btn-primary" onclick="hitung()">
+      <span style="position:relative;z-index:1">🧮 Hitung Perkiraan Biaya</span>
+    </button>
+
+    <div class="loading" id="loading">
+      <div class="spinner"></div>
+      <p>Menghitung tarif terbaik...</p>
+    </div>
 
     <div id="hasil" class="result" style="display:none"></div>
-    <p class="muted">*Harga bersifat perkiraan, dapat berubah jika berat/volume berlebihan atau akses sulit.</p>
+    
+    <div class="tips">
+      <strong>💡 Tips:</strong> Booking di hari kerja biasanya lebih fleksibel. Hubungi kami untuk diskon khusus pemesanan rutin!
+    </div>
+    
+    <p class="muted">*Harga bersifat perkiraan dan dapat berubah jika berat/volume berlebihan atau kondisi akses sulit.</p>
   </div>
 
   <script>
-    // === TARIF TABEL MANUAL PER ARMADA ===
     const tarifPickup = {
       "tembilahan-tembilahan":150000,
       "tembilahan-tempuling":300000,
@@ -122,24 +482,62 @@
       "tembilahan-telukpinang":450000,
       "telukpinang-tembilahan":450000,
     };
+    
+    const estimasiWaktu = {
+      "tembilahan-tembilahan":"30-45 menit",
+      "tembilahan-tempuling":"1-1.5 jam",
+      "tempuling-tembilahan":"1-1.5 jam",
+      "tembilahan-rumbai":"1.5-2 jam",
+      "rumbai-tembilahan":"1.5-2 jam",
+      "tembilahan-kempas":"2-2.5 jam",
+      "kempas-tembilahan":"2-2.5 jam",
+      "tembilahan-inhu":"4-5 jam",
+      "inhu-tembilahan":"4-5 jam",
+      "tembilahan-telukpinang":"2-3 jam",
+      "telukpinang-tembilahan":"2-3 jam",
+    };
 
     const DEFAULT_PICKUP = 150000;
     const DEFAULT_VIAR = 100000;
 
+    let lastCalc = null;
+    let isDark = false;
+
     function rupiah(n){return "Rp "+(n||0).toLocaleString('id-ID');}
     function capitalize(s){return s.charAt(0).toUpperCase()+s.slice(1);}
     function formatLokasi(k){
-      const map={tembilahan:'Tembilahan',tempuling:'Tempuling',rumbai:'Rumbai',kempas:'Kempas',inhu:'Inhu (Rengat & Sekitar)',telukpinang:'Teluk Pinang'};
+      const map={
+        tembilahan:'Tembilahan',
+        tempuling:'Tempuling',
+        rumbai:'Rumbai',
+        kempas:'Kempas',
+        inhu:'Inhu (Rengat & Sekitar)',
+        telukpinang:'Teluk Pinang'
+      };
       return map[k]||k;
     }
-
-    let lastCalc=null;
 
     function getBase(armada,jemput,tujuan){
       const key=`${jemput}-${tujuan}`;
       if(armada==="pickup") return tarifPickup[key]??DEFAULT_PICKUP;
       if(armada==="viar") return tarifViar[key]??DEFAULT_VIAR;
       return 0;
+    }
+    
+    function getEstimasiWaktu(jemput,tujuan){
+      const key=`${jemput}-${tujuan}`;
+      return estimasiWaktu[key]||"Estimasi tidak tersedia";
+    }
+
+    function updateForm(){
+      const armada=document.getElementById('armada').value;
+      const jenis=document.getElementById('jenis').value;
+      const jemput=document.getElementById('jemput').value;
+      const tujuan=document.getElementById('tujuan').value;
+      
+      if(armada&&jenis&&jemput&&tujuan){
+        document.getElementById('hasil').style.display='none';
+      }
     }
 
     function hitung(){
@@ -149,72 +547,107 @@
       const tujuan=document.getElementById('tujuan').value;
       const crew=parseInt(document.getElementById('crew').value,10);
       const output=document.getElementById('hasil');
+      const loading=document.getElementById('loading');
 
       if(!armada||!jenis||!jemput||!tujuan){
         output.style.display='block';
-        output.innerHTML="⚠️ Mohon lengkapi semua pilihan.";
+        output.innerHTML="<div class='info-box'>⚠️ <strong>Mohon lengkapi semua pilihan terlebih dahulu.</strong></div>";
         lastCalc=null;
         smoothScrollTo(output);
         return;
       }
 
-      const base=getBase(armada,jemput,tujuan);
-      const biayaCrew=crew;
-      const total=base+biayaCrew;
+      loading.style.display='block';
+      output.style.display='none';
 
-      lastCalc={armada,jenis,jemput,tujuan,base,biayaCrew,total};
+      setTimeout(()=>{
+        const base=getBase(armada,jemput,tujuan);
+        const biayaCrew=crew;
+        const total=base+biayaCrew;
+        const waktu=getEstimasiWaktu(jemput,tujuan);
 
-      output.style.display='block';
-      output.innerHTML=`
-        <div class="breakdown">
-          <strong>Ringkasan Pesanan</strong>
-          <div>Armada: <strong>${armada.toUpperCase()}</strong> <span class="badge">${capitalize(jenis)}</span></div>
-          <div>Rute: <strong>${formatLokasi(jemput)}</strong> → <strong>${formatLokasi(tujuan)}</strong></div>
-          <ul class="list money">
-            <li><span>Tarif dasar</span><span>${rupiah(base)}</span></li>
-            <li><span>Tenaga muat & bongkar</span><span>${rupiah(biayaCrew)}</span></li>
-          </ul>
-          <div class="total-line money">
-            <span>Total Perkiraan</span>
-            <span style="font-size:1.2rem">${rupiah(total)}</span>
+        lastCalc={armada,jenis,jemput,tujuan,base,biayaCrew,total,waktu};
+
+        loading.style.display='none';
+        output.style.display='block';
+        output.innerHTML=`
+          <div class="breakdown">
+            <strong>📋 Ringkasan Pesanan</strong>
+            <div class="info-box">
+              <div style="margin-bottom:8px">
+                <strong>Armada:</strong> ${armada.toUpperCase()} 
+                <span class="badge">${capitalize(jenis)}</span>
+              </div>
+              <div style="margin-bottom:8px">
+                <strong>Rute:</strong> ${formatLokasi(jemput)} ➜ ${formatLokasi(tujuan)}
+              </div>
+              <div class="estimate-time">
+                ⏱️ Estimasi Waktu: <strong>${waktu}</strong>
+              </div>
+            </div>
+            <ul class="list money">
+              <li><span>💰 Tarif dasar</span><span><strong>${rupiah(base)}</strong></span></li>
+              <li><span>👷 Tenaga muat & bongkar</span><span><strong>${rupiah(biayaCrew)}</strong></span></li>
+            </ul>
+            <div class="total-line money">
+              <span>🎯 Total Perkiraan</span>
+              <span style="font-size:1.3rem;color:#4c51bf">${rupiah(total)}</span>
+            </div>
+            <div class="actions-inline">
+              <button class="btn-wa" onclick="orderWA()">
+                <span style="position:relative;z-index:1">💬 Chat WhatsApp (Order Sekarang)</span>
+              </button>
+            </div>
           </div>
-          <div class="actions-inline">
-            <button class="btn-wa" onclick="orderWA()">Chat WhatsApp (Order)</button>
-          </div>
-        </div>
-      `;
+        `;
 
-      smoothScrollTo(output);
+        smoothScrollTo(output);
+      },800);
     }
 
     function orderWA(){
       if(!lastCalc) return;
-      const {armada,jenis,jemput,tujuan,base,biayaCrew,total}=lastCalc;
+      const {armada,jenis,jemput,tujuan,base,biayaCrew,total,waktu}=lastCalc;
 
       const template=
-`Halo InhilCargo, saya ingin order:
-- Armada: ${armada.toUpperCase()}
-- Jenis Angkutan: ${capitalize(jenis)}
-- Rute: ${formatLokasi(jemput)} → ${formatLokasi(tujuan)}
+`Halo InhilCargo! 👋 Saya ingin order:
 
-Rincian Biaya:
+🚛 DETAIL PESANAN:
+━━━━━━━━━━━━━━━━━━━
+• Armada: ${armada.toUpperCase()}
+• Jenis: ${capitalize(jenis)}
+• Rute: ${formatLokasi(jemput)} ➜ ${formatLokasi(tujuan)}
+• Estimasi Waktu: ${waktu}
+
+💰 RINCIAN BIAYA:
+━━━━━━━━━━━━━━━━━━━
 • Tarif Dasar: ${rupiah(base)}
-• Tenaga Muat & Bongkar: ${rupiah(biayaCrew)}
-TOTAL PERKIRAAN: ${rupiah(total)}
+• Muat & Bongkar: ${rupiah(biayaCrew)}
+━━━━━━━━━━━━━━━━━━━
+TOTAL: ${rupiah(total)}
 
-Data Pemesan:
-Nama:
-No. HP:
-Alamat Jemput:
-Tanggal/Jam Jemput:
-Catatan Tambahan:`;
+👤 DATA PEMESAN:
+━━━━━━━━━━━━━━━━━━━
+Nama: 
+No. HP: 
+Alamat Jemput: 
+Tanggal/Jam: 
+Catatan: `;
 
       const url="https://wa.me/6285187715318?text="+encodeURIComponent(template);
       window.open(url,'_blank');
     }
 
+    function toggleTheme(){
+      isDark = !isDark;
+      document.body.classList.toggle('dark-mode');
+      document.querySelector('.theme-toggle').textContent = isDark ? '☀️' : '🌙';
+    }
+
     function smoothScrollTo(el){
-      requestAnimationFrame(()=>{el.scrollIntoView({behavior:'smooth',block:'start'});});
+      requestAnimationFrame(()=>{
+        el.scrollIntoView({behavior:'smooth',block:'center'});
+      });
     }
   </script>
 </body>
