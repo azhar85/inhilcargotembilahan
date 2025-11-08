@@ -889,6 +889,8 @@ Mohon informasi ketersediaan dan tarifnya. Terima kasih! 🙏`;
       const {armada,jenis,jemput,tujuan,base,biayaCrew,total,waktu}=lastCalc;
 
       const template=
+const template=
+`Halo InhilCargo! 👋 Saya ingin order:
 `🚚 *INHILCARGO - PESANAN BARU*
 
 ━━━━━━━━━━━━━━━━━━━━━━━
@@ -899,12 +901,20 @@ Mohon informasi ketersediaan dan tarifnya. Terima kasih! 🙏`;
 📍 Rute: *${formatLokasi(jemput)}* ➜ *${formatLokasi(tujuan)}*
 ⏱️ Estimasi Waktu: *${waktu}*
 
+🚛 DETAIL PESANAN:
+━━━━━━━━━━━━━━━━━━━
+• Armada: ${armada.toUpperCase()}
+• Jenis: ${capitalize(jenis)}
+• Rute: ${formatLokasi(jemput)} ➜ ${formatLokasi(tujuan)}
+• Estimasi Waktu: ${waktu}
 ━━━━━━━━━━━━━━━━━━━━━━━
 👤 *DATA PEMESAN*
 ━━━━━━━━━━━━━━━━━━━━━━━
 Nama: *${nama}*
 No. HP/WA: *${nohp}*
 
+💰 RINCIAN BIAYA:
+━━━━━━━━━━━━━━━━━━━
 ━━━━━━━━━━━━━━━━━━━━━━━
 📍 *DETAIL ALAMAT*
 ━━━━━━━━━━━━━━━━━━━━━━━
@@ -922,10 +932,19 @@ ${catatan ? `📝 Catatan:\n${catatan}\n\n` : ''}━━━━━━━━━━�
 ━━━━━━━━━━━━━━━━━━━━━━━
 • Tarif Dasar: ${rupiah(base)}
 • Muat & Bongkar: ${rupiah(biayaCrew)}
+━━━━━━━━━━━━━━━━━━━
+TOTAL: ${rupiah(total)}
 ━━━━━━━━━━━━━━━━━━━━━━━
 💵 *TOTAL BIAYA: ${rupiah(total)}*
 ━━━━━━━━━━━━━━━━━━━━━━━
 
+👤 DATA PEMESAN:
+━━━━━━━━━━━━━━━━━━━
+Nama: 
+No. HP: 
+Alamat Jemput: 
+Tanggal/Jam: 
+Catatan: `;
 Mohon konfirmasi ketersediaan armada. Terima kasih! 🙏`;
 
       const url="https://wa.me/6285187715318?text="+encodeURIComponent(template);
@@ -944,13 +963,7 @@ Mohon konfirmasi ketersediaan armada. Terima kasih! 🙏`;
     }
 
     function toggleTheme(){
-      isDark = !isDark;
-      document.body.classList.toggle('dark-mode');
-      document.querySelector('.theme-toggle').textContent = isDark ? '☀️' : '🌙';
-    }
-
-    function smoothScrollTo(el){
-      requestAnimationFrame(()=>{
+@@ -649,6 +917,27 @@ <h1>INHILCARGO</h1>
         el.scrollIntoView({behavior:'smooth',block:'center'});
       });
     }
@@ -977,4 +990,5 @@ Mohon konfirmasi ketersediaan armada. Terima kasih! 🙏`;
     });
   </script>
 </body>
+</html>
 </html>
