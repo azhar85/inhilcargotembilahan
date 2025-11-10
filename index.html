@@ -509,8 +509,8 @@
       <label for="armada"><span class="label-icon">🚛</span> Pilih Armada</label>
       <select id="armada" onchange="updateForm()">
         <option value="">Pilih Armada</option>
-        <option value="viar">VIAR (Kendaraan Kecil)</option>
-        <option value="pickup">PICKUP (Kendaraan Sedang)</option>
+        <option value="viar">VIAR</option>
+        <option value="pickup">PICKUP</option>
       </select>
     </div>
 
@@ -532,8 +532,9 @@
           <option value="tempuling">Tempuling</option>
           <option value="rumbai">Rumbai</option>
           <option value="kempas">Kempas</option>
-          <option value="inhu">Inhu (Rengat & Sekitar)</option>
           <option value="telukpinang">Teluk Pinang</option>
+          <option value="inhu">INHU(Rengat & Sekitar)</option>
+          <option value="pekanbaru">PEKANBARU</option>
         </select>
       </div>
       <div class="form-group">
@@ -544,8 +545,9 @@
           <option value="tempuling">Tempuling</option>
           <option value="rumbai">Rumbai</option>
           <option value="kempas">Kempas</option>
-          <option value="inhu">Inhu (Rengat & Sekitar)</option>
           <option value="telukpinang">Teluk Pinang</option>
+          <option value="inhu">INHU(Rengat & Sekitar)</option>
+          <option value="pekanbaru">PEKANBARU</option>
         </select>
       </div>
     </div>
@@ -636,6 +638,8 @@
       "inhu-tembilahan":1000000,
       "tembilahan-telukpinang":500000,
       "telukpinang-tembilahan":500000,
+      "tembilahan-pekanbaru":2000000,
+      "pekanbaru-tembilahan":2000000,
     };
 
     const tarifViar = {
@@ -650,6 +654,8 @@
       "inhu-tembilahan":950000,
       "tembilahan-telukpinang":450000,
       "telukpinang-tembilahan":450000,
+      "tembilahan-pekanbaru":2000000,
+      "pekanbaru-tembilahan":2000000,
     };
     
     const estimasiWaktu = {
@@ -664,6 +670,8 @@
       "inhu-tembilahan":"4-5 jam",
       "tembilahan-telukpinang":"2-3 jam",
       "telukpinang-tembilahan":"2-3 jam",
+      "tembilahan-pekanbaru":"7-8 jam",
+      "pekanbaru-tembilahan":"7-8 jam",
     };
 
     let lastCalc = null;
@@ -677,8 +685,9 @@
         tempuling:'Tempuling',
         rumbai:'Rumbai',
         kempas:'Kempas',
-        inhu:'Inhu (Rengat & Sekitar)',
+        inhu:'INHU (Rengat & Sekitar)',
         telukpinang:'Teluk Pinang'
+        pekanbaru:'PEKANBARU'
       };
       return map[k]||k;
     }
@@ -977,3 +986,4 @@ Mohon konfirmasi ketersediaan armada. Terima kasih! 🙏`;
   </script>
 </body>
 </html>
+
