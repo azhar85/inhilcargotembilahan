@@ -529,10 +529,10 @@
         <select id="jemput" onchange="updateForm()">
           <option value="">Pilih Jemput</option>
           <option value="tembilahan">Tembilahan</option>
+          <option value="telukpinang">Teluk Pinang</option>
           <option value="tempuling">Tempuling</option>
           <option value="rumbai">Rumbai</option>
           <option value="kempas">Kempas</option>
-          <option value="telukpinang">Teluk Pinang</option>
           <option value="inhu">INHU(Rengat & Sekitar)</option>
           <option value="pekanbaru">PEKANBARU</option>
         </select>
@@ -542,10 +542,10 @@
         <select id="tujuan" onchange="updateForm()">
           <option value="">Pilih Tujuan</option>
           <option value="tembilahan">Tembilahan</option>
+          <option value="telukpinang">Teluk Pinang</option>
           <option value="tempuling">Tempuling</option>
           <option value="rumbai">Rumbai</option>
           <option value="kempas">Kempas</option>
-          <option value="telukpinang">Teluk Pinang</option>
           <option value="inhu">INHU(Rengat & Sekitar)</option>
           <option value="pekanbaru">PEKANBARU</option>
         </select>
@@ -573,7 +573,7 @@
     <div id="hasil" class="result" style="display:none"></div>
     
     <div class="tips">
-      <strong>💡 Tips:</strong> Booking di hari kerja biasanya lebih fleksibel. Hubungi kami untuk diskon khusus pemesanan rutin!
+      <strong>💡 Tips:</strong> Booking lebih awal untuk mendapat jadwal tetap. Hubungi kami untuk diskon khusus pemesanan rutin!
     </div>
     
     <p class="muted">*Harga bersifat perkiraan dan dapat berubah jika berat/volume berlebihan atau kondisi akses sulit.</p>
@@ -654,24 +654,22 @@
       "inhu-tembilahan":950000,
       "tembilahan-telukpinang":450000,
       "telukpinang-tembilahan":450000,
-      "tembilahan-pekanbaru":2000000,
-      "pekanbaru-tembilahan":2000000,
     };
     
     const estimasiWaktu = {
       "tembilahan-tembilahan":"30-45 menit",
       "tembilahan-tempuling":"1-1.5 jam",
       "tempuling-tembilahan":"1-1.5 jam",
-      "tembilahan-rumbai":"1.5-2 jam",
-      "rumbai-tembilahan":"1.5-2 jam",
-      "tembilahan-kempas":"2-2.5 jam",
-      "kempas-tembilahan":"2-2.5 jam",
+      "tembilahan-rumbai":"1-2 jam",
+      "rumbai-tembilahan":"1-2 jam",
+      "tembilahan-kempas":"2-3 jam",
+      "kempas-tembilahan":"2-3 jam",
       "tembilahan-inhu":"4-5 jam",
       "inhu-tembilahan":"4-5 jam",
       "tembilahan-telukpinang":"2-3 jam",
       "telukpinang-tembilahan":"2-3 jam",
-      "tembilahan-pekanbaru":"7-8 jam",
-      "pekanbaru-tembilahan":"7-8 jam",
+      "tembilahan-pekanbaru":"7-9 jam",
+      "pekanbaru-tembilahan":"7-9 jam",
     };
 
     let lastCalc = null;
@@ -685,9 +683,9 @@
         tempuling:'Tempuling',
         rumbai:'Rumbai',
         kempas:'Kempas',
-        inhu:'INHU (Rengat & Sekitar)',
-        telukpinang:'Teluk Pinang'
-        pekanbaru:'PEKANBARU'
+        inhu:'Inhu (Rengat & Sekitar)',
+        telukpinang:'Teluk Pinang',
+        pekanbaru:'PEKANBARU',
       };
       return map[k]||k;
     }
@@ -986,4 +984,3 @@ Mohon konfirmasi ketersediaan armada. Terima kasih! 🙏`;
   </script>
 </body>
 </html>
-
