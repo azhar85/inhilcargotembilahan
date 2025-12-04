@@ -3,208 +3,208 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>INHILCARGO - Jasa Angkutan Tembilahan</title>
+  <title>INHILCARGO - Jasa Angkutan Premium Tembilahan</title>
   <style>
-    *{margin:0;padding:0;box-sizing:border-box}
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
     
     body{
-      font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
-      background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+      font-family:'Inter',sans-serif;
+      background:#0a0e27;
       min-height:100vh;
       display:flex;
       justify-content:center;
-      align-items:flex-start;
-      padding:32px 20px;
+      align-items:center;
+      padding:20px;
       position:relative;
       overflow-x:hidden;
     }
     
     body::before{
       content:'';
-      position:absolute;
+      position:fixed;
       top:0;left:0;right:0;bottom:0;
-      background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.627 0l.83.828-1.415 1.415L51.8 0h2.827zM5.373 0l-.83.828L5.96 2.243 8.2 0H5.374zM48.97 0l3.657 3.657-1.414 1.414L46.143 0h2.828zM11.03 0L7.372 3.657 8.787 5.07 13.857 0H11.03zm32.284 0L49.8 6.485 48.384 7.9l-7.9-7.9h2.83zM16.686 0L10.2 6.485 11.616 7.9l7.9-7.9h-2.83zm20.97 0l9.315 9.314-1.414 1.414L34.828 0h2.83zM22.344 0L13.03 9.314l1.414 1.414L25.172 0h-2.83zM32 0l12.142 12.142-1.414 1.414L30 .828 17.272 13.556 15.858 12.14 28 0h4zM.284 0l28 28-1.414 1.414L0 2.544V0h.284zM0 5.373l25.456 25.455-1.414 1.415L0 8.2V5.374zm0 5.656l22.627 22.627-1.414 1.414L0 13.86v-2.83zm0 5.656l19.8 19.8-1.415 1.413L0 19.514v-2.83zm0 5.657l16.97 16.97-1.414 1.415L0 25.172v-2.83zM0 28l14.142 14.142-1.414 1.414L0 30.828V28zm0 5.657L11.314 44.97 9.9 46.386l-9.9-9.9v-2.828zm0 5.657L8.485 47.8 7.07 49.212 0 42.143v-2.83zm0 5.657l5.657 5.657-1.414 1.415L0 47.8v-2.83zm0 5.657l2.828 2.83-1.414 1.414L0 53.456v-2.83zM54.627 60L30 35.373 5.373 60H8.2L30 38.2 51.8 60h2.827zm-5.656 0L30 41.03 11.03 60h2.828L30 43.858 46.142 60h2.83zm-5.656 0L30 46.686 16.686 60h2.83L30 49.515 40.485 60h2.83zm-5.657 0L30 52.343 22.344 60h2.83L30 55.172 34.828 60h2.83zM32 60l-2-2-2 2h4zM59.716 0l-28 28 1.414 1.414L60 2.544V0h-.284zM60 5.373L34.544 30.828l1.414 1.415L60 8.2V5.374zm0 5.656L37.373 33.656l1.414 1.414L60 13.86v-2.83zm0 5.656L40.2 36.485l1.415 1.413L60 19.514v-2.83zm0 5.657L43.03 38.97l1.414 1.415L60 25.172v-2.83zM60 28L45.858 42.142l1.414 1.414L60 30.828V28zm0 5.657L48.686 44.97l1.415 1.415 9.9-9.9v-2.828zm0 5.657L51.515 47.8l1.414 1.413 7.07-7.07v-2.83zm0 5.657l-5.657 5.657 1.414 1.415L60 47.8v-2.83zm0 5.657l-2.828 2.83 1.414 1.414L60 53.456v-2.83z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
-      animation:bgMove 30s linear infinite;
+      background:radial-gradient(circle at 20% 50%, rgba(120,119,198,0.15), transparent 40%),
+                 radial-gradient(circle at 80% 80%, rgba(236,72,153,0.15), transparent 40%),
+                 radial-gradient(circle at 40% 20%, rgba(59,130,246,0.15), transparent 40%);
+      z-index:0;
+      animation:gradientShift 15s ease infinite;
+    }
+    
+    @keyframes gradientShift{
+      0%, 100%{opacity:0.5}
+      50%{opacity:0.8}
+    }
+    
+    body::after{
+      content:'';
+      position:fixed;
+      top:0;left:0;right:0;bottom:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size:50px 50px;
       z-index:0;
     }
     
-    @keyframes bgMove{
-      0%{background-position:0 0}
-      100%{background-position:60px 60px}
-    }
-    
-    .dark-mode{
-      background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);
-    }
-    
-    .dark-mode .container{
-      background:#0f3460;
-      color:#e4e4e4;
-      box-shadow:0 10px 60px rgba(0,0,0,.5);
-    }
-    
-    .dark-mode h1{color:#f39c12}
-    .dark-mode select,.dark-mode input{background:#1a1a2e;color:#e4e4e4;border-color:#2c3e50}
-    .dark-mode .result{background:#1a1a2e}
-    .dark-mode .badge{background:#2c3e50;color:#ecf0f1}
-    .dark-mode .list li{border-color:#2c3e50}
-    
     .container{
-      background:#fff;
-      padding:32px;
-      border-radius:24px;
-      box-shadow:0 20px 60px rgba(0,0,0,.2);
+      background:rgba(15,23,42,0.95);
+      backdrop-filter:blur(20px);
+      padding:40px;
+      border-radius:32px;
+      border:1px solid rgba(255,255,255,0.1);
+      box-shadow:0 25px 80px rgba(0,0,0,0.5),
+                 inset 0 1px 0 rgba(255,255,255,0.1);
       width:100%;
-      max-width:620px;
+      max-width:650px;
       position:relative;
       z-index:1;
-      animation:slideUp 0.5s ease-out;
+      animation:slideUp 0.6s cubic-bezier(0.16,1,0.3,1);
     }
     
     @keyframes slideUp{
-      from{opacity:0;transform:translateY(30px)}
+      from{opacity:0;transform:translateY(40px)}
       to{opacity:1;transform:translateY(0)}
     }
     
     .header{
-      margin-bottom:24px;
+      text-align:center;
+      margin-bottom:40px;
       position:relative;
-      display:flex;
-      flex-direction:column;
-      gap:8px;
     }
     
-    .truck-icon{
-      font-size:3rem;
-      margin-bottom:4px;
-      animation:truck 2s ease-in-out infinite;
+    .logo-container{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:90px;
+      height:90px;
+      background:#020617;
+      border-radius:999px;
+      margin-bottom:18px;
+      box-shadow:0 12px 40px rgba(0,0,0,0.7);
+      border:1px solid rgba(250,204,21,0.5);
+      animation:float 3s ease-in-out infinite;
     }
     
-    @keyframes truck{
-      0%,100%{transform:translateX(0)}
-      50%{transform:translateX(10px)}
+    @keyframes float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-10px)}
+    }
+    
+    .logo-img{
+      max-width:70%;
+      max-height:70%;
+      object-fit:contain;
+      filter:drop-shadow(0 4px 10px rgba(0,0,0,0.6));
     }
     
     h1{
-      color:#4c51bf;
-      font-size:1.9rem;
-      margin-bottom:4px;
+      font-size:2.2rem;
       font-weight:800;
+      margin-bottom:8px;
+      color:#facc6b; /* emas */
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      text-shadow:0 0 18px rgba(250,204,21,0.35);
     }
     
     .subtitle{
-      color:#6b7280;
-      font-size:0.9rem;
+      color:rgba(226,232,240,0.75);
+      font-size:0.8rem;
+      font-weight:500;
+      letter-spacing:0.15em;
+      text-transform:uppercase;
     }
     
-    .hero-text{
-      margin-top:4px;
-      font-size:0.9rem;
-      color:#4b5563;
-      line-height:1.6;
+    .form-section{
+      animation:fadeIn 0.6s ease-out backwards;
     }
     
-    .dark-mode .hero-text{color:#e5e7eb}
-    
-    .theme-toggle{
-      position:absolute;
-      top:0;
-      right:0;
-      background:none;
-      border:none;
-      font-size:1.5rem;
-      cursor:pointer;
-      padding:8px;
-      border-radius:50%;
-      transition:transform 0.3s,background 0.3s;
-    }
-    
-    .theme-toggle:hover{
-      transform:rotate(20deg);
-      background:rgba(148,163,184,0.2);
-    }
-    
-    .form-section-title{
-      margin-top:8px;
-      margin-bottom:12px;
-      font-size:0.95rem;
-      font-weight:600;
-      color:#4b5563;
-      display:flex;
-      align-items:center;
-      gap:8px;
-    }
-    
-    .form-section-title span.emoji{
-      font-size:1.2rem;
+    @keyframes fadeIn{
+      from{opacity:0;transform:translateY(20px)}
+      to{opacity:1;transform:translateY(0)}
     }
     
     .form-group{
-      margin-bottom:16px;
-      animation:fadeIn 0.5s ease-out backwards;
+      margin-bottom:20px;
     }
     
-    .form-group:nth-child(2){animation-delay:0.1s}
+    .form-group:nth-child(1){animation-delay:0.1s}
+    .form-group:nth-child(2){animation-delay:0.15s}
     .form-group:nth-child(3){animation-delay:0.2s}
-    .form-group:nth-child(4){animation-delay:0.3s}
-    
-    @keyframes fadeIn{
-      from{opacity:0;transform:translateX(-20px)}
-      to{opacity:1;transform:translateX(0)}
-    }
+    .form-group:nth-child(4){animation-delay:0.25s}
     
     label{
       display:flex;
       align-items:center;
-      gap:8px;
+      gap:10px;
       font-weight:600;
-      margin-bottom:8px;
-      color:#374151;
+      margin-bottom:10px;
+      color:rgba(255,255,255,0.9);
       font-size:0.95rem;
     }
     
-    .dark-mode label{color:#e4e4e4}
-    
-    .label-icon{font-size:1.2rem}
+    .label-icon{
+      font-size:1.3rem;
+      filter:grayscale(0.2);
+    }
     
     select,input{
       width:100%;
-      padding:12px 16px;
-      border-radius:12px;
-      border:2px solid #e5e7eb;
+      padding:14px 18px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,0.1);
       font-size:1rem;
-      background:#fff;
-      transition:all 0.3s;
+      background:rgba(30,41,59,0.5);
+      color:#fff;
+      transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
       cursor:pointer;
+      font-family:inherit;
     }
     
     select:focus,input:focus{
       outline:none;
-      border-color:#4c51bf;
-      box-shadow:0 0 0 3px rgba(76,81,191,0.1);
+      border-color:#667eea;
+      background:rgba(30,41,59,0.8);
+      box-shadow:0 0 0 4px rgba(102,126,234,0.15);
       transform:translateY(-2px);
     }
     
-    select:hover,input:hover{border-color:#a5b4fc}
+    select:hover,input:hover{
+      border-color:rgba(102,126,234,0.5);
+      background:rgba(30,41,59,0.7);
+    }
+    
+    select option{
+      background:#1e293b;
+      color:#fff;
+    }
     
     .grid{
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:16px;
-      margin-bottom:16px;
+      margin-bottom:20px;
     }
     
     button{
       width:100%;
-      padding:14px;
-      border-radius:12px;
+      padding:16px;
+      border-radius:16px;
       border:none;
-      font-size:1rem;
+      font-size:1.05rem;
       font-weight:700;
       cursor:pointer;
-      transition:all 0.3s;
+      transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
       position:relative;
       overflow:hidden;
+      font-family:inherit;
     }
     
     button::before{
@@ -215,55 +215,58 @@
       width:0;
       height:0;
       border-radius:50%;
-      background:rgba(255,255,255,0.3);
+      background:rgba(255,255,255,0.2);
       transform:translate(-50%,-50%);
       transition:width 0.6s,height 0.6s;
     }
     
     button:hover::before{
-      width:300px;
-      height:300px;
+      width:400px;
+      height:400px;
     }
     
     .btn-primary{
-      background:linear-gradient(135deg,#4c51bf,#5a67d8);
+      background:linear-gradient(135deg,#667eea,#764ba2);
       color:#fff;
-      margin-top:8px;
+      margin-top:10px;
+      box-shadow:0 10px 30px rgba(102,126,234,0.3);
     }
     
     .btn-primary:hover{
-      transform:translateY(-2px);
-      box-shadow:0 10px 25px rgba(76,81,191,0.3);
+      transform:translateY(-3px);
+      box-shadow:0 15px 40px rgba(102,126,234,0.4);
     }
     
     .btn-primary:active{
-      transform:translateY(0);
+      transform:translateY(-1px);
     }
     
     .btn-wa{
       background:linear-gradient(135deg,#25D366,#1ebe5d);
       color:#fff;
+      box-shadow:0 10px 30px rgba(37,211,102,0.3);
     }
     
     .btn-wa:hover{
-      transform:translateY(-2px);
-      box-shadow:0 10px 25px rgba(37,211,102,0.3);
+      transform:translateY(-3px);
+      box-shadow:0 15px 40px rgba(37,211,102,0.4);
     }
     
     .loading{
       display:none;
       text-align:center;
-      padding:20px;
+      padding:30px;
+      animation:fadeIn 0.3s;
     }
     
     .spinner{
-      border:4px solid #f3f4f6;
-      border-top:4px solid #4c51bf;
+      border:4px solid rgba(102,126,234,0.2);
+      border-top:4px solid #667eea;
       border-radius:50%;
-      width:40px;
-      height:40px;
+      width:50px;
+      height:50px;
       animation:spin 1s linear infinite;
-      margin:0 auto 10px;
+      margin:0 auto 15px;
     }
     
     @keyframes spin{
@@ -271,12 +274,19 @@
       100%{transform:rotate(360deg)}
     }
     
+    .loading p{
+      color:rgba(255,255,255,0.7);
+      font-size:0.95rem;
+    }
+    
     .result{
-      margin-top:20px;
-      background:linear-gradient(135deg,#edf2f7,#e2e8f0);
-      padding:20px;
-      border-radius:16px;
-      animation:slideDown 0.4s ease-out;
+      margin-top:30px;
+      background:rgba(30,41,59,0.5);
+      backdrop-filter:blur(10px);
+      padding:28px;
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,0.1);
+      animation:slideDown 0.4s cubic-bezier(0.16,1,0.3,1);
     }
     
     @keyframes slideDown{
@@ -284,40 +294,90 @@
       to{opacity:1;transform:translateY(0)}
     }
     
-    .breakdown{line-height:1.8}
-    
     .breakdown>strong{
       display:block;
-      font-size:1.2rem;
-      margin-bottom:12px;
-      color:#1f2937;
+      font-size:1.3rem;
+      margin-bottom:20px;
+      color:#fff;
+      font-weight:700;
     }
-    
-    .dark-mode .breakdown>strong{color:#f39c12}
     
     .info-box{
-      background:#fff;
-      padding:12px;
-      border-radius:10px;
-      margin:10px 0;
-      border-left:4px solid #4c51bf;
+      background:rgba(102,126,234,0.1);
+      padding:18px;
+      border-radius:16px;
+      margin:15px 0;
+      border-left:4px solid #667eea;
+      line-height:1.8;
     }
     
-    .dark-mode .info-box{background:#1a1a2e;border-color:#f39c12}
+    .info-box strong{
+      color:rgba(255,255,255,0.9);
+    }
+    
+    .info-box>div{
+      color:rgba(255,255,255,0.8);
+      margin-bottom:8px;
+    }
+    
+    .info-box>div:last-child{
+      margin-bottom:0;
+    }
     
     .badge{
       display:inline-block;
-      background:#e0e7ff;
-      color:#4338ca;
+      background:linear-gradient(135deg,#667eea,#764ba2);
+      color:#fff;
       border-radius:999px;
-      padding:4px 12px;
+      padding:5px 14px;
       font-size:0.85rem;
       font-weight:600;
       margin-left:8px;
+      box-shadow:0 4px 12px rgba(102,126,234,0.3);
+    }
+    
+    .price-range{
+      background:linear-gradient(135deg,rgba(102,126,234,0.15),rgba(118,75,162,0.15));
+      border:1px solid rgba(102,126,234,0.3);
+      padding:20px;
+      border-radius:16px;
+      margin:15px 0;
+    }
+    
+    .price-range-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:12px;
+    }
+    
+    .price-range-label{
+      color:rgba(255,255,255,0.7);
+      font-size:0.9rem;
+      font-weight:500;
+    }
+    
+    .price-main{
+      font-size:1.8rem;
+      font-weight:800;
+      background:linear-gradient(135deg,#667eea,#f093fb);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    
+    .price-note{
+      color:rgba(255,255,255,0.5);
+      font-size:0.85rem;
+      margin-top:8px;
+      line-height:1.5;
     }
     
     .list{
-      margin:12px 0;
+      margin:15px 0;
       padding:0;
       list-style:none;
     }
@@ -325,337 +385,333 @@
     .list li{
       display:flex;
       justify-content:space-between;
-      padding:10px 0;
-      border-bottom:1px dashed #cbd5e1;
+      align-items:center;
+      padding:12px 0;
+      border-bottom:1px dashed rgba(255,255,255,0.1);
+      color:rgba(255,255,255,0.8);
     }
     
     .list li:last-child{border:none}
     
-    .money{font-variant-numeric:tabular-nums}
-    
-    .total-line{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      margin-top:16px;
-      padding:16px;
-      background:#fff;
-      border-radius:12px;
-      font-weight:800;
-      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    .list li strong{
+      color:#fff;
     }
-    
-    .dark-mode .total-line{background:#0f3460}
-    
-    .total-subnote{
-      font-size:0.8rem;
-      color:#6b7280;
-      margin-top:8px;
-      line-height:1.4;
-    }
-    
-    .dark-mode .total-subnote{color:#d1d5db}
-    
-    .actions-inline{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      margin-top:12px;
-    }
-    
-    .muted{
-      color:#6b7280;
-      font-size:0.8rem;
-      margin-top:16px;
-      padding:10px 12px;
-      background:rgba(255,255,255,0.6);
-      border-radius:10px;
-      line-height:1.5;
-    }
-    
-    .dark-mode .muted{background:rgba(0,0,0,0.2);color:#9ca3af}
-    
-    .tips{
-      margin-top:20px;
-      padding:16px;
-      background:#fef3c7;
-      border-radius:12px;
-      border-left:4px solid #f59e0b;
-      font-size:0.9rem;
-      line-height:1.5;
-    }
-    
-    .dark-mode .tips{background:#2c1810;border-color:#f39c12}
-    
-    .tips strong{color:#92400e}
-    .dark-mode .tips strong{color:#f39c12}
     
     .estimate-time{
       display:inline-flex;
       align-items:center;
-      gap:6px;
-      background:#dbeafe;
-      color:#1e40af;
-      padding:6px 12px;
-      border-radius:8px;
+      gap:8px;
+      background:rgba(59,130,246,0.15);
+      color:#60a5fa;
+      padding:8px 14px;
+      border-radius:12px;
       font-size:0.9rem;
-      margin-top:8px;
+      font-weight:600;
+      border:1px solid rgba(59,130,246,0.3);
     }
     
-    .dark-mode .estimate-time{background:#1e3a5f;color:#93c5fd}
+    .actions-inline{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      margin-top:20px;
+    }
+    
+    .tips{
+      margin-top:30px;
+      padding:20px;
+      background:rgba(245,158,11,0.1);
+      border-radius:16px;
+      border-left:4px solid #f59e0b;
+      line-height:1.6;
+    }
+    
+    .tips strong{
+      color:#fbbf24;
+      display:block;
+      margin-bottom:8px;
+      font-size:1.05rem;
+    }
+    
+    .tips p{
+      color:rgba(255,255,255,0.7);
+      font-size:0.9rem;
+    }
+    
+    .muted{
+      color:rgba(255,255,255,0.4);
+      font-size:0.85rem;
+      text-align:center;
+      margin-top:20px;
+      padding:16px;
+      background:rgba(255,255,255,0.03);
+      border-radius:12px;
+      line-height:1.5;
+    }
     
     .modal{
       display:none;
       position:fixed;
       top:0;left:0;right:0;bottom:0;
-      background:rgba(0,0,0,0.6);
+      background:rgba(0,0,0,0.85);
+      backdrop-filter:blur(10px);
       z-index:1000;
       justify-content:center;
       align-items:center;
       padding:20px;
-      backdrop-filter:blur(5px);
       animation:fadeIn 0.3s;
     }
     
     .modal.active{display:flex}
     
     .modal-content{
-      background:#fff;
-      border-radius:20px;
-      padding:28px;
-      max-width:500px;
+      background:rgba(15,23,42,0.98);
+      backdrop-filter:blur(20px);
+      border-radius:28px;
+      padding:32px;
+      max-width:550px;
       width:100%;
       max-height:90vh;
       overflow-y:auto;
-      box-shadow:0 20px 60px rgba(0,0,0,0.3);
-      animation:slideUp 0.3s ease-out;
+      box-shadow:0 25px 80px rgba(0,0,0,0.6);
+      border:1px solid rgba(255,255,255,0.1);
+      animation:slideUp 0.4s cubic-bezier(0.16,1,0.3,1);
       position:relative;
     }
-    
-    .dark-mode .modal-content{background:#0f3460;color:#e4e4e4}
     
     .modal-header{
       display:flex;
       justify-content:space-between;
       align-items:center;
-      margin-bottom:20px;
-      padding-bottom:16px;
-      border-bottom:2px solid #e5e7eb;
+      margin-bottom:24px;
+      padding-bottom:20px;
+      border-bottom:1px solid rgba(255,255,255,0.1);
     }
-    
-    .dark-mode .modal-header{border-color:#2c3e50}
     
     .modal-header h2{
-      color:#4c51bf;
-      font-size:1.4rem;
+      color:#fff;
+      font-size:1.5rem;
       margin:0;
+      font-weight:700;
     }
     
-    .dark-mode .modal-header h2{color:#f39c12}
-    
     .close-modal{
-      background:none;
-      border:none;
-      font-size:1.8rem;
+      background:rgba(239,68,68,0.1);
+      border:1px solid rgba(239,68,68,0.3);
+      font-size:1.5rem;
       cursor:pointer;
-      color:#6b7280;
-      width:auto;
-      padding:4px;
+      color:#ef4444;
+      width:36px;
+      height:36px;
+      padding:0;
       line-height:1;
-      transition:transform 0.2s;
+      border-radius:10px;
+      transition:all 0.3s;
+      display:flex;
+      align-items:center;
+      justify-content:center;
     }
     
     .close-modal:hover{
+      background:rgba(239,68,68,0.2);
       transform:rotate(90deg);
-      color:#ef4444;
     }
     
     .form-input{
       width:100%;
-      padding:12px 16px;
-      border-radius:12px;
-      border:2px solid #e5e7eb;
+      padding:14px 18px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,0.1);
       font-size:1rem;
-      background:#fff;
+      background:rgba(30,41,59,0.5);
+      color:#fff;
       transition:all 0.3s;
       font-family:inherit;
     }
     
-    .dark-mode .form-input{
-      background:#1a1a2e;
-      color:#e4e4e4;
-      border-color:#2c3e50;
+    .form-input::placeholder{
+      color:rgba(255,255,255,0.4);
     }
     
     .form-input:focus{
       outline:none;
-      border-color:#4c51bf;
-      box-shadow:0 0 0 3px rgba(76,81,191,0.1);
+      border-color:#667eea;
+      background:rgba(30,41,59,0.8);
+      box-shadow:0 0 0 4px rgba(102,126,234,0.15);
     }
     
     textarea.form-input{
       resize:vertical;
-      min-height:80px;
+      min-height:90px;
     }
     
     .order-summary{
-      background:linear-gradient(135deg,#f3f4f6,#e5e7eb);
-      padding:16px;
-      border-radius:12px;
-      margin-bottom:16px;
-      border-left:4px solid #4c51bf;
-      font-size:0.92rem;
-    }
-    
-    .dark-mode .order-summary{
-      background:linear-gradient(135deg,#1a1a2e,#16213e);
-      border-color:#f39c12;
+      background:linear-gradient(135deg,rgba(102,126,234,0.15),rgba(118,75,162,0.15));
+      padding:20px;
+      border-radius:16px;
+      margin-bottom:24px;
+      border:1px solid rgba(102,126,234,0.3);
     }
     
     .order-summary-title{
       font-weight:700;
-      margin-bottom:10px;
-      color:#1f2937;
+      margin-bottom:14px;
+      color:#fff;
+      font-size:1.1rem;
     }
-    
-    .dark-mode .order-summary-title{color:#f39c12}
     
     .order-summary-item{
       display:flex;
       justify-content:space-between;
-      padding:6px 0;
+      align-items:center;
+      padding:8px 0;
       font-size:0.95rem;
+      color:rgba(255,255,255,0.8);
     }
     
-    .order-summary-note{
-      margin-top:8px;
-      font-size:0.8rem;
-      color:#6b7280;
+    .order-summary-item strong{
+      color:#fff;
     }
     
-    .dark-mode .order-summary-note{color:#d1d5db}
+    .error-box{
+      background:rgba(239,68,68,0.1);
+      border:1px solid rgba(239,68,68,0.3);
+      border-left:4px solid #ef4444;
+      padding:24px;
+      border-radius:16px;
+      text-align:center;
+    }
+    
+    .error-icon{
+      font-size:3.5rem;
+      margin-bottom:16px;
+      opacity:0.9;
+    }
+    
+    .error-box h3{
+      color:#ef4444;
+      margin-bottom:12px;
+      font-size:1.2rem;
+    }
+    
+    .error-box p{
+      color:rgba(255,255,255,0.7);
+      margin-bottom:12px;
+      line-height:1.6;
+    }
     
     @media(max-width:640px){
-      body{padding:20px 14px;}
-      .container{padding:20px}
-      h1{font-size:1.6rem}
+      .container{padding:24px}
+      h1{font-size:1.8rem}
       .grid{grid-template-columns:1fr}
-      .modal-content{padding:20px}
+      .modal-content{padding:24px}
+      .price-main{font-size:1.5rem}
     }
+    
+    ::-webkit-scrollbar{width:8px}
+    ::-webkit-scrollbar-track{background:rgba(30,41,59,0.5)}
+    ::-webkit-scrollbar-thumb{background:rgba(102,126,234,0.5);border-radius:4px}
+    ::-webkit-scrollbar-thumb:hover{background:rgba(102,126,234,0.7)}
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
-      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">🌙</button>
-      <div class="truck-icon">🚚</div>
-      <h1>INHILCARGO</h1>
-      <p class="subtitle">Jasa Angkutan Terg es it Tembilahan & Sekitar</p>
-      <p class="hero-text">
-        Hitung sendiri kisaran biaya angkut VIAR/PICKUP dari dan ke Tembilahan. 
-        <strong>Harga akhir tetap dikonfirmasi via WhatsApp</strong> sesuai jenis barang dan kondisi akses lokasi.
-      </p>
+      <div class="logo-container">
+        <!-- logo/logo.png akan Anda simpan di folder "logo" -->
+        <img src="logo/logo.png" alt="INHIL CARGO" class="logo-img">
+      </div>
+      <h1>INHIL CARGO</h1>
+      <p class="subtitle">Layanan Angkutan Premium Tembilahan</p>
     </div>
 
-    <div class="form-section-title">
-      <span class="emoji">🧮</span>
-      <span>Isi data berikut untuk melihat <strong>kisaran tarif</strong></span>
-    </div>
-
-    <div class="form-group">
-      <label for="armada"><span class="label-icon">🚛</span> Pilih Armada</label>
-      <select id="armada" onchange="updateForm()">
-        <option value="">Pilih Armada</option>
-        <option value="viar">VIAR</option>
-        <option value="pickup">PICKUP</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="jenis"><span class="label-icon">📦</span> Jenis Angkutan</label>
-      <select id="jenis" onchange="updateForm()">
-        <option value="">Pilih Jenis Angkutan</option>
-        <option value="pindahan">Pindahan Rumah/Kos</option>
-        <option value="barang">Pengiriman Barang</option>
-      </select>
-    </div>
-
-    <div class="grid">
+    <div class="form-section">
       <div class="form-group">
-        <label for="jemput"><span class="label-icon">📍</span> Titik Jemput</label>
-        <select id="jemput" onchange="updateForm()">
-          <option value="">Pilih Jemput</option>
-          <option value="tembilahan">Tembilahan</option>
-          <option value="telukpinang">Teluk Pinang</option>
-          <option value="tempuling">Tempuling</option>
-          <option value="rumbai">Rumbai</option>
-          <option value="kempas">Kempas</option>
-          <option value="inhu">INHU(Rengat & Sekitar)</option>
-          <option value="pekanbaru">PEKANBARU</option>
+        <label for="armada"><span class="label-icon">🚛</span> Pilih Armada</label>
+        <select id="armada" onchange="updateForm()">
+          <option value="">Pilih Armada</option>
+          <option value="viar">VIAR</option>
+          <option value="pickup">PICKUP</option>
         </select>
       </div>
+
       <div class="form-group">
-        <label for="tujuan"><span class="label-icon">🎯</span> Tujuan</label>
-        <select id="tujuan" onchange="updateForm()">
-          <option value="">Pilih Tujuan</option>
-          <option value="tembilahan">Tembilahan</option>
-          <option value="telukpinang">Teluk Pinang</option>
-          <option value="tempuling">Tempuling</option>
-          <option value="rumbai">Rumbai</option>
-          <option value="kempas">Kempas</option>
-          <option value="inhu">INHU(Rengat & Sekitar)</option>
-          <option value="pekanbaru">PEKANBARU</option>
+        <label for="jenis"><span class="label-icon">📦</span> Jenis Angkutan</label>
+        <select id="jenis" onchange="updateForm()">
+          <option value="">Pilih Jenis Angkutan</option>
+          <option value="pindahan">Pindahan Rumah/Kos</option>
+          <option value="barang">Pengiriman Barang</option>
         </select>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="crew"><span class="label-icon">👷</span> Muat & Bongkar</label>
-      <select id="crew">
-        <option value="0">Muat Bongkar Sendiri</option>
-        <option value="50000">1 Orang Tenaga Buruh (bantu muat & bongkar)</option>
-        <option value="100000">2 Orang Tenaga Buruh (terima beres)</option>
-      </select>
-    </div>
+      <div class="grid">
+        <div class="form-group">
+          <label for="jemput"><span class="label-icon">📍</span> Titik Jemput</label>
+          <select id="jemput" onchange="updateForm()">
+            <option value="">Pilih Jemput</option>
+            <option value="tembilahan">Tembilahan</option>
+            <option value="telukpinang">Teluk Pinang</option>
+            <option value="tempuling">Tempuling</option>
+            <option value="rumbai">Rumbai</option>
+            <option value="kempas">Kempas</option>
+            <option value="inhu">INHU (Rengat & Sekitar)</option>
+            <option value="pekanbaru">PEKANBARU</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="tujuan"><span class="label-icon">🎯</span> Tujuan</label>
+          <select id="tujuan" onchange="updateForm()">
+            <option value="">Pilih Tujuan</option>
+            <option value="tembilahan">Tembilahan</option>
+            <option value="telukpinang">Teluk Pinang</option>
+            <option value="tempuling">Tempuling</option>
+            <option value="rumbai">Rumbai</option>
+            <option value="kempas">Kempas</option>
+            <option value="inhu">INHU (Rengat & Sekitar)</option>
+            <option value="pekanbaru">PEKANBARU</option>
+          </select>
+        </div>
+      </div>
 
-    <button class="btn-primary" onclick="hitung()">
-      <span style="position:relative;z-index:1">🔍 Lihat Kisaran Biaya</span>
-    </button>
+      <div class="form-group">
+        <label for="crew"><span class="label-icon">👷</span> Muat & Bongkar</label>
+        <select id="crew">
+          <option value="0">Muat Bongkar Sendiri</option>
+          <option value="50000">1 Orang Tenaga Buruh (bantu muat & bongkar)</option>
+          <option value="100000">2 Orang Tenaga Buruh (terima beres)</option>
+        </select>
+      </div>
+
+      <button class="btn-primary" onclick="hitung()">
+        <span style="position:relative;z-index:1">🧮 Hitung Perkiraan Biaya</span>
+      </button>
+    </div>
 
     <div class="loading" id="loading">
       <div class="spinner"></div>
-      <p>Menghitung kisaran tarif terbaik...</p>
+      <p>Menghitung tarif terbaik untuk Anda...</p>
     </div>
 
     <div id="hasil" class="result" style="display:none"></div>
     
     <div class="tips">
-      <strong>💡 Tips:</strong> Booking lebih awal untuk mendapat jadwal tetap. 
-      Untuk kiriman rutin (toko, usaha, kantor) bisa negosiasi harga khusus langsung via WhatsApp.
+      <strong>💡 Informasi Penting</strong>
+      <p>Harga dapat bervariasi tergantung pada jenis barang (pecah belah, furniture besar, elektronik) dan kondisi akses jalan. Booking lebih awal untuk mendapat jadwal tetap!</p>
     </div>
     
-    <p class="muted">
-      *Kisaran harga sudah termasuk BBM & sopir. Harga bisa berubah jika volume/berat barang besar, 
-      akses lokasi sulit, atau ada permintaan khusus. Admin akan konfirmasi total sebelum berangkat.*
-    </p>
+    <p class="muted">*Range harga sudah termasuk faktor jenis barang dan kondisi akses jalan. Untuk perhitungan lebih akurat, mohon hubungi admin kami.</p>
   </div>
 
-  <!-- Modal Form Order -->
   <div class="modal" id="orderModal">
     <div class="modal-content">
       <div class="modal-header">
-        <h2>📝 Data Pemesanan</h2>
+        <h2>📋 Data Pemesanan</h2>
         <button class="close-modal" onclick="closeModal()">×</button>
       </div>
       
       <div class="order-summary" id="modalSummary"></div>
       
-      <div class="order-summary-note">
-        Kisaran biaya di atas <strong>belum final</strong>. 
-        Admin akan menyesuaikan kembali setelah mengetahui detail barang dan kondisi akses.
-      </div>
-      
-      <div class="form-group" style="margin-top:14px;">
+      <div class="form-group">
         <label for="namaPemesan"><span class="label-icon">👤</span> Nama Lengkap</label>
         <input type="text" id="namaPemesan" class="form-input" placeholder="Masukkan nama lengkap" required>
       </div>
@@ -682,393 +738,309 @@
       
       <div class="form-group">
         <label for="catatanTambahan"><span class="label-icon">📝</span> Catatan Tambahan (Opsional)</label>
-        <textarea id="catatanTambahan" class="form-input" placeholder="Contoh: Barang pecah belah, butuh bantuan naik tangga, dll"></textarea>
+        <textarea id="catatanTambahan" class="form-input" placeholder="Contoh: Barang pecah belah, butuh bantuan naik tangga, akses jalan sempit, dll"></textarea>
       </div>
       
       <button class="btn-wa" onclick="sendToWA()">
-        <span style="position:relative;z-index:1">✅ Kirim ke WhatsApp (Konfirmasi Harga)</span>
+        <span style="position:relative;z-index:1">✅ Kirim ke WhatsApp</span>
       </button>
     </div>
   </div>
 
   <script>
     const tarifPickup = {
-      "tembilahan-tembilahan":150000,
-      "tembilahan-tempuling":300000,
-      "tempuling-tembilahan":300000,
-      "tembilahan-rumbai":350000,
-      "rumbai-tembilahan":350000,
-      "tembilahan-kempas":450000,
-      "kempas-tembilahan":450000,
-      "tembilahan-inhu":1000000,
-      "inhu-tembilahan":1000000,
-      "tembilahan-telukpinang":500000,
-      "telukpinang-tembilahan":500000,
-      "tembilahan-pekanbaru":2000000,
-      "pekanbaru-tembilahan":2000000,
+      "tembilahan-tembilahan":{min:150000,max:200000},
+      "tembilahan-tempuling":{min:300000,max:350000},
+      "tempuling-tembilahan":{min:300000,max:350000},
+      "tembilahan-rumbai":{min:350000,max:400000},
+      "rumbai-tembilahan":{min:350000,max:400000},
+      "tembilahan-kempas":{min:450000,max:500000},
+      "kempas-tembilahan":{min:450000,max:500000},
+      "tembilahan-inhu":{min:1000000,max:1200000},
+      "inhu-tembilahan":{min:1000000,max:1200000},
+      "tembilahan-telukpinang":{min:500000,max:600000},
+      "telukpinang-tembilahan":{min:500000,max:600000},
+      "tembilahan-pekanbaru":{min:2000000,max:2500000},
+      "pekanbaru-tembilahan":{min:2000000,max:2500000},
     };
 
     const tarifViar = {
-      "tembilahan-tembilahan":100000,
-      "tembilahan-tempuling":250000,
-      "tempuling-tembilahan":250000,
-      "tembilahan-rumbai":300000,
-      "rumbai-tembilahan":300000,
-      "tembilahan-kempas":400000,
-      "kempas-tembilahan":400000,
-      "tembilahan-inhu":950000,
-      "inhu-tembilahan":950000,
-      "tembilahan-telukpinang":450000,
-      "telukpinang-tembilahan":450000,
-    };
-    
-    const estimasiWaktu = {
-      "tembilahan-tembilahan":"30-45 menit",
-      "tembilahan-tempuling":"1-1.5 jam",
-      "tempuling-tembilahan":"1-1.5 jam",
-      "tembilahan-rumbai":"1-2 jam",
-      "rumbai-tembilahan":"1-2 jam",
-      "tembilahan-kempas":"2-3 jam",
-      "kempas-tembilahan":"2-3 jam",
-      "tembilahan-inhu":"4-5 jam",
-      "inhu-tembilahan":"4-5 jam",
-      "tembilahan-telukpinang":"2-3 jam",
-      "telukpinang-tembilahan":"2-3 jam",
-      "tembilahan-pekanbaru":"7-9 jam",
-      "pekanbaru-tembilahan":"7-9 jam",
+      "tembilahan-tembilahan":{min:100000,max:150000},
+      "tembilahan-tempuling":{min:250000,max:300000},
+      "tempuling-tembilahan":{min:250000,max:300000},
+      "tembilahan-rumbai":{min:300000,max:350000},
+      "rumbai-tembilahan":{min:300000,max:350000},
+      "tembilahan-kempas":{min:400000,max:450000},
+      "kempas-tembilahan":{min:400000,max:450000},
+      "tembilahan-inhu":{min:900000,max:1100000},
+      "inhu-tembilahan":{min:900000,max:1100000},
+      "tembilahan-telukpinang":{min:450000,max:550000},
+      "telukpinang-tembilahan":{min:450000,max:550000},
+      "tembilahan-pekanbaru":{min:1800000,max:2300000},
+      "pekanbaru-tembilahan":{min:1800000,max:2300000},
     };
 
-    let lastCalc = null;
-    let isDark = false;
+    const lokasiLabel = {
+      tembilahan: "Tembilahan",
+      telukpinang: "Teluk Pinang",
+      tempuling: "Tempuling",
+      rumbai: "Rumbai",
+      kempas: "Kempas",
+      inhu: "INHU (Rengat & Sekitar)",
+      pekanbaru: "Pekanbaru"
+    };
 
-    function rupiah(n){return "Rp "+(n||0).toLocaleString('id-ID');}
-    function capitalize(s){return s.charAt(0).toUpperCase()+s.slice(1);}
-    function formatLokasi(k){
-      const map={
-        tembilahan:'Tembilahan',
-        tempuling:'Tempuling',
-        rumbai:'Rumbai',
-        kempas:'Kempas',
-        inhu:'Inhu (Rengat & Sekitar)',
-        telukpinang:'Teluk Pinang',
-        pekanbaru:'PEKANBARU',
-      };
-      return map[k]||k;
+    let lastCalculation = null;
+
+    function formatRupiah(angka) {
+      if (!angka && angka !== 0) return "-";
+      return "Rp " + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
 
-    // Mengubah tarif dasar menjadi kisaran (misal 80% - 120% dari tarif patokan).
-    // Silakan sesuaikan rumus ini jika mau kisaran lain.
-    function getRange(base){
-      const min = Math.round(base * 0.8);  // contoh: 80% dari tarif patokan
-      const max = Math.round(base * 1.2);  // contoh: 120% dari tarif patokan
-      return {min, max};
+    function getTarif(armada, jemput, tujuan) {
+      if (!armada || !jemput || !tujuan) return null;
+
+      const key = `${jemput}-${tujuan}`;
+      const tabel = armada === "pickup" ? tarifPickup : tarifViar;
+      return tabel[key] || null;
     }
 
-    function getBase(armada,jemput,tujuan){
-      const key=`${jemput}-${tujuan}`;
-      if(armada==="pickup") return tarifPickup[key]??null;
-      if(armada==="viar") return tarifViar[key]??null;
-      return null;
-    }
-    
-    function getEstimasiWaktu(jemput,tujuan){
-      const key=`${jemput}-${tujuan}`;
-      return estimasiWaktu[key]||"Estimasi tidak tersedia";
+    function updateForm() {
+      const hasil = document.getElementById("hasil");
+      hasil.style.display = "none";
+      hasil.innerHTML = "";
     }
 
-    function updateForm(){
-      const armada=document.getElementById('armada').value;
-      const jenis=document.getElementById('jenis').value;
-      const jemput=document.getElementById('jemput').value;
-      const tujuan=document.getElementById('tujuan').value;
-      
-      if(armada&&jenis&&jemput&&tujuan){
-        document.getElementById('hasil').style.display='none';
-      }
-    }
+    function hitung() {
+      const armada = document.getElementById("armada").value;
+      const jenis  = document.getElementById("jenis").value;
+      const jemput = document.getElementById("jemput").value;
+      const tujuan = document.getElementById("tujuan").value;
+      const crew   = parseInt(document.getElementById("crew").value || "0", 10);
 
-    function hitung(){
-      const armada=document.getElementById('armada').value;
-      const jenis=document.getElementById('jenis').value;
-      const jemput=document.getElementById('jemput').value;
-      const tujuan=document.getElementById('tujuan').value;
-      const crew=parseInt(document.getElementById('crew').value,10);
-      const output=document.getElementById('hasil');
-      const loading=document.getElementById('loading');
+      const loading = document.getElementById("loading");
+      const hasil   = document.getElementById("hasil");
 
-      if(!armada||!jenis||!jemput||!tujuan){
-        output.style.display='block';
-        output.innerHTML="<div class='info-box'>⚠️ <strong>Mohon lengkapi semua pilihan terlebih dahulu.</strong></div>";
-        lastCalc=null;
-        smoothScrollTo(output);
-        return;
-      }
+      hasil.style.display = "none";
+      hasil.innerHTML = "";
+      loading.style.display = "block";
 
-      loading.style.display='block';
-      output.style.display='none';
+      setTimeout(() => {
+        loading.style.display = "none";
 
-      setTimeout(()=>{
-        const base=getBase(armada,jemput,tujuan);
-        
-        // Cek jika rute tidak tersedia
-        if(base === null){
-          loading.style.display='none';
-          output.style.display='block';
-          output.innerHTML=`
-            <div class="info-box" style="border-left:4px solid #ef4444;background:#fee2e2;text-align:center;padding:24px">
-              <div style="font-size:3rem;margin-bottom:12px">📞</div>
-              <h3 style="color:#991b1b;margin-bottom:12px;font-size:1.2rem">Rute Tidak Tersedia dalam Sistem</h3>
-              <p style="color:#7f1d1d;margin-bottom:16px;line-height:1.6">
-                Maaf, rute <strong>${formatLokasi(jemput)} ➜ ${formatLokasi(tujuan)}</strong> belum tersedia dalam sistem kami.
-              </p>
-              <p style="color:#7f1d1d;margin-bottom:20px">
-                Silakan hubungi admin untuk informasi tarif khusus rute ini.
-              </p>
-              <button class="btn-wa" onclick="contactAdmin('${armada}','${jenis}','${jemput}','${tujuan}')">
-                <span style="position:relative;z-index:1">💬 Hubungi Admin via WhatsApp</span>
-              </button>
+        // Validasi dasar
+        if (!armada || !jenis || !jemput || !tujuan) {
+          hasil.innerHTML = `
+            <div class="error-box">
+              <div class="error-icon">⚠️</div>
+              <h3>Data Belum Lengkap</h3>
+              <p>Silakan pilih <strong>Armada</strong>, <strong>Jenis Angkutan</strong>, <strong>Titik Jemput</strong> dan <strong>Tujuan</strong> terlebih dahulu.</p>
+              <p>Jika masih ragu, Anda bisa langsung konsultasi via WhatsApp.</p>
+              <div class="actions-inline">
+                <button class="btn-wa" onclick="openModal()">
+                  <span style="position:relative;z-index:1">💬 Isi Data & Konsultasi WA</span>
+                </button>
+              </div>
             </div>
           `;
-          smoothScrollTo(output);
+          hasil.style.display = "block";
           return;
         }
-        
-        const {min:baseMin, max:baseMax} = getRange(base);
-        const biayaCrew=crew;
-        const totalMin = baseMin + biayaCrew;
-        const totalMax = baseMax + biayaCrew;
-        const waktu=getEstimasiWaktu(jemput,tujuan);
 
-        lastCalc={armada,jenis,jemput,tujuan,base,baseMin,baseMax,biayaCrew,totalMin,totalMax,waktu};
+        let tarif;
+        if (jemput === tujuan) {
+          // Untuk rute dalam kota, pakai tarif tembilahan-tembilahan
+          const tabel = armada === "pickup" ? tarifPickup : tarifViar;
+          tarif = tabel["tembilahan-tembilahan"];
+        } else {
+          tarif = getTarif(armada, jemput, tujuan);
+        }
 
-        loading.style.display='none';
-        output.style.display='block';
-        output.innerHTML=`
+        if (!tarif) {
+          hasil.innerHTML = `
+            <div class="error-box">
+              <div class="error-icon">🗺️</div>
+              <h3>Rute Belum Tersedia Otomatis</h3>
+              <p>Untuk rute <strong>${lokasiLabel[jemput] || jemput}</strong> ke <strong>${lokasiLabel[tujuan] || tujuan}</strong> belum tersedia di sistem.</p>
+              <p>Tenang, Anda tetap bisa menanyakan harga dengan mengirim data rute ke admin kami.</p>
+              <div class="actions-inline">
+                <button class="btn-wa" onclick="openModal()">
+                  <span style="position:relative;z-index:1">💬 Kirim Rute ke WhatsApp</span>
+                </button>
+              </div>
+            </div>
+          `;
+          hasil.style.display = "block";
+          return;
+        }
+
+        const minBase = tarif.min;
+        const maxBase = tarif.max;
+
+        const minTotal = minBase + crew;
+        const maxTotal = maxBase + crew;
+
+        lastCalculation = {
+          armada,
+          jenis,
+          jemput,
+          tujuan,
+          crew,
+          minBase,
+          maxBase,
+          minTotal,
+          maxTotal
+        };
+
+        const labelArmada = armada === "pickup" ? "Pickup" : "Viar Roda 3";
+        const labelJenis = jenis === "pindahan" ? "Pindahan Rumah/Kos" : "Pengiriman Barang";
+
+        hasil.innerHTML = `
           <div class="breakdown">
-            <strong>📋 Ringkasan Perkiraan</strong>
-            <div class="info-box">
-              <div style="margin-bottom:8px">
-                <strong>Armada:</strong> ${armada.toUpperCase()} 
-                <span class="badge">${capitalize(jenis)}</span>
-              </div>
-              <div style="margin-bottom:8px">
-                <strong>Rute:</strong> ${formatLokasi(jemput)} ➜ ${formatLokasi(tujuan)}
-              </div>
-              <div class="estimate-time">
-                ⏱️ Estimasi Waktu: <strong>${waktu}</strong>
-              </div>
+            <strong>Perkiraan Biaya Angkutan</strong>
+          </div>
+
+          <div class="info-box">
+            <div><strong>Armada:</strong> ${labelArmada}</div>
+            <div><strong>Jenis Angkutan:</strong> ${labelJenis}</div>
+            <div><strong>Rute:</strong> ${lokasiLabel[jemput] || jemput} ➝ ${lokasiLabel[tujuan] || tujuan}</div>
+          </div>
+
+          <div class="price-range">
+            <div class="price-range-header">
+              <span class="price-range-label">Perkiraan total biaya angkut</span>
+              <span class="badge">Range Harga</span>
             </div>
-            <ul class="list money">
-              <li><span>💰 Tarif dasar (perkiraan)</span><span><strong>${rupiah(baseMin)} - ${rupiah(baseMax)}</strong></span></li>
-              <li><span>👷 Tenaga muat & bongkar</span><span><strong>${rupiah(biayaCrew)}</strong></span></li>
-            </ul>
-            <div class="total-line money">
-              <span>🎯 Total Perkiraan</span>
-              <span style="font-size:1.15rem;color:#4c51bf">${rupiah(totalMin)} - ${rupiah(totalMax)}</span>
+            <div class="price-main">
+              ${formatRupiah(minTotal)} - ${formatRupiah(maxTotal)}
             </div>
-            <p class="total-subnote">
-              Kisaran di atas <strong>belum mengikat</strong>. Harga akhir akan dikonfirmasi admin setelah detail barang & kondisi akses lokasi disampaikan via WhatsApp.
-            </p>
-            <div class="actions-inline">
-              <button class="btn-wa" onclick="orderWA()">
-                <span style="position:relative;z-index:1">💬 Chat WhatsApp (Lanjut Konfirmasi)</span>
-              </button>
+            <div class="price-note">
+              Range harga ini sudah termasuk pertimbangan jenis barang dan kondisi akses jalan. 
+              Harga final akan dikonfirmasi kembali oleh admin melalui WhatsApp.
             </div>
+          </div>
+
+          <ul class="list">
+            <li>
+              <span>Biaya Armada (perkiraan)</span>
+              <span><strong>${formatRupiah(minBase)} - ${formatRupiah(maxBase)}</strong></span>
+            </li>
+            <li>
+              <span>Tenaga Muat & Bongkar</span>
+              <span><strong>${crew > 0 ? formatRupiah(crew) : "Muat bongkar sendiri"}</strong></span>
+            </li>
+          </ul>
+
+          <div class="actions-inline">
+            <div class="estimate-time">
+              ⏱️ Estimasi | Konfirmasi harga final via WhatsApp
+            </div>
+            <button class="btn-wa" onclick="openModal()">
+              <span style="position:relative;z-index:1">📲 Lanjutkan Booking & Kirim ke WhatsApp</span>
+            </button>
           </div>
         `;
 
-        smoothScrollTo(output);
-      },800);
+        hasil.style.display = "block";
+      }, 500);
     }
 
-    function orderWA(){
-      if(!lastCalc) return;
-      
-      // Show modal with order summary
-      const modal = document.getElementById('orderModal');
-      const summary = document.getElementById('modalSummary');
-      const {armada,jenis,jemput,tujuan,baseMin,baseMax,biayaCrew,totalMin,totalMax,waktu}=lastCalc;
-      
-      summary.innerHTML = `
-        <div class="order-summary-title">📦 Ringkasan Perkiraan Pesanan</div>
-        <div class="order-summary-item">
-          <span>Armada:</span>
-          <strong>${armada.toUpperCase()}</strong>
-        </div>
-        <div class="order-summary-item">
-          <span>Jenis:</span>
-          <strong>${capitalize(jenis)}</strong>
-        </div>
-        <div class="order-summary-item">
-          <span>Rute:</span>
-          <strong>${formatLokasi(jemput)} ➜ ${formatLokasi(tujuan)}</strong>
-        </div>
-        <div class="order-summary-item">
-          <span>Estimasi Waktu:</span>
-          <strong>${waktu}</strong>
-        </div>
-        <div class="order-summary-item" style="border-top:2px dashed #cbd5e1;margin-top:8px;padding-top:8px">
-          <span>Tarif dasar (kisaran):</span>
-          <strong>${rupiah(baseMin)} - ${rupiah(baseMax)}</strong>
-        </div>
-        <div class="order-summary-item">
-          <span>Muat & bongkar:</span>
-          <strong>${rupiah(biayaCrew)}</strong>
-        </div>
-        <div class="order-summary-item">
-          <span style="font-size:1.05rem">Total Perkiraan:</span>
-          <strong style="color:#4c51bf;font-size:1.1rem">${rupiah(totalMin)} - ${rupiah(totalMax)}</strong>
-        </div>
-      `;
-      
-      // Set minimum datetime to current time
-      const now = new Date();
-      now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
-      document.getElementById('tanggalJemput').min = now.toISOString().slice(0,16);
-      
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
+    function openModal() {
+      const modal = document.getElementById("orderModal");
+      const summary = document.getElementById("modalSummary");
+
+      if (lastCalculation) {
+        const { armada, jenis, jemput, tujuan, crew, minTotal, maxTotal } = lastCalculation;
+        const labelArmada = armada === "pickup" ? "Pickup" : "Viar Roda 3";
+        const labelJenis = jenis === "pindahan" ? "Pindahan Rumah/Kos" : "Pengiriman Barang";
+
+        summary.innerHTML = `
+          <div class="order-summary-title">Ringkasan Pesanan</div>
+          <div class="order-summary-item">
+            <span>Armada</span>
+            <strong>${labelArmada}</strong>
+          </div>
+          <div class="order-summary-item">
+            <span>Jenis Angkutan</span>
+            <strong>${labelJenis}</strong>
+          </div>
+          <div class="order-summary-item">
+            <span>Rute</span>
+            <strong>${lokasiLabel[jemput] || jemput} ➝ ${lokasiLabel[tujuan] || tujuan}</strong>
+          </div>
+          <div class="order-summary-item">
+            <span>Tenaga Muat & Bongkar</span>
+            <strong>${crew > 0 ? formatRupiah(crew) : "Muat bongkar sendiri"}</strong>
+          </div>
+          <div class="order-summary-item">
+            <span>Perkiraan Total</span>
+            <strong>${formatRupiah(minTotal)} - ${formatRupiah(maxTotal)}</strong>
+          </div>
+        `;
+      } else {
+        summary.innerHTML = `
+          <div class="order-summary-title">Ringkasan Pesanan</div>
+          <div class="order-summary-item">
+            <span>Perkiraan biaya akan dihitung ulang oleh admin berdasarkan data yang Anda kirim.</span>
+          </div>
+        `;
+      }
+
+      modal.classList.add("active");
     }
-    
-    function contactAdmin(armada,jenis,jemput,tujuan){
-      const template=
-`🚚 *INHILCARGO - PERMINTAAN INFO TARIF*
 
-Halo Admin, saya ingin menanyakan tarif untuk rute berikut yang belum ada di sistem kalkulator:
-
-🚛 Armada: *${armada.toUpperCase()}*
-📦 Jenis Angkutan: *${capitalize(jenis)}*
-📍 Rute: *${formatLokasi(jemput)}* ➜ *${formatLokasi(tujuan)}*
-
-Mohon informasi kisaran tarif dan ketersediaan armada. Terima kasih! 🙏`;
-
-      const url="https://wa.me/6285187715318?text="+encodeURIComponent(template);
-      window.open(url,'_blank');
+    function closeModal() {
+      const modal = document.getElementById("orderModal");
+      modal.classList.remove("active");
     }
-    
-    function closeModal(){
-      const modal = document.getElementById('orderModal');
-      modal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-    
-    function sendToWA(){
-      if(!lastCalc) return;
-      
-      const nama = document.getElementById('namaPemesan').value.trim();
-      const nohp = document.getElementById('nohpPemesan').value.trim();
-      const alamatJemput = document.getElementById('alamatJemput').value.trim();
-      const alamatTujuan = document.getElementById('alamatTujuan').value.trim();
-      const tanggal = document.getElementById('tanggalJemput').value;
-      const catatan = document.getElementById('catatanTambahan').value.trim();
-      
-      // Validation
-      if(!nama || !nohp || !alamatJemput || !alamatTujuan || !tanggal){
-        alert('⚠️ Mohon lengkapi semua data yang wajib diisi!');
+
+    function sendToWA() {
+      const nama    = document.getElementById("namaPemesan").value.trim();
+      const nohp    = document.getElementById("nohpPemesan").value.trim();
+      const alamatJ = document.getElementById("alamatJemput").value.trim();
+      const alamatT = document.getElementById("alamatTujuan").value.trim();
+      const tgl     = document.getElementById("tanggalJemput").value.trim();
+      const catatan = document.getElementById("catatanTambahan").value.trim();
+
+      if (!nama || !nohp || !alamatJ || !alamatT || !tgl) {
+        alert("Mohon lengkapi semua data wajib (nama, nomor HP, alamat jemput & tujuan, serta tanggal jemput).");
         return;
       }
-      
-      // Format tanggal
-      const dateObj = new Date(tanggal);
-      const options = { 
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-      };
-      const tanggalFormat = dateObj.toLocaleDateString('id-ID', options);
-      
-      const {armada,jenis,jemput,tujuan,baseMin,baseMax,biayaCrew,totalMin,totalMax,waktu}=lastCalc;
 
-      const template=
-`🚚 *INHILCARGO - PERMINTAAN PESANAN & KONFIRMASI TARIF*
+      let teks = "Halo INHILCARGO,%0A%0ASaya ingin melakukan pemesanan jasa angkutan.%0A%0A";
 
-━━━━━━━━━━━━━━━━━━━━━━━
-📦 *DETAIL PERKIRAAN PESANAN*
-━━━━━━━━━━━━━━━━━━━━━━━
-🚛 Armada: *${armada.toUpperCase()}*
-📦 Jenis Angkutan: *${capitalize(jenis)}*
-📍 Rute: *${formatLokasi(jemput)}* ➜ *${formatLokasi(tujuan)}*
-⏱️ Estimasi Waktu Perjalanan: *${waktu}*
+      if (lastCalculation) {
+        const { armada, jenis, jemput, tujuan, crew, minTotal, maxTotal } = lastCalculation;
+        const labelArmada = armada === "pickup" ? "Pickup" : "Viar Roda 3";
+        const labelJenis = jenis === "pindahan" ? "Pindahan Rumah/Kos" : "Pengiriman Barang";
 
-━━━━━━━━━━━━━━━━━━━━━━━
-👤 *DATA PEMESAN*
-━━━━━━━━━━━━━━━━━━━━━━━
-Nama: *${nama}*
-No. HP/WA: *${nohp}*
-
-━━━━━━━━━━━━━━━━━━━━━━━
-📍 *DETAIL ALAMAT*
-━━━━━━━━━━━━━━━━━━━━━━━
-🏠 Alamat Jemput:
-${alamatJemput}
-
-🎯 Alamat Tujuan:
-${alamatTujuan}
-
-📅 Jadwal Jemput (keinginan saya):
-${tanggalFormat}
-
-${catatan ? `📝 Catatan Tambahan:\n${catatan}\n\n` : ''}━━━━━━━━━━━━━━━━━━━━━━━
-💰 *RINCIAN KISARAN BIAYA (DARI KALKULATOR)*
-━━━━━━━━━━━━━━━━━━━━━━━
-• Tarif Dasar (perkiraan): ${rupiah(baseMin)} - ${rupiah(baseMax)}
-• Muat & Bongkar: ${rupiah(biayaCrew)}
-━━━━━━━━━━━━━━━━━━━━━━━
-💵 *TOTAL PERKIRAAN: ${rupiah(totalMin)} - ${rupiah(totalMax)}*
-━━━━━━━━━━━━━━━━━━━━━━━
-
-Mohon konfirmasi *harga final* dan ketersediaan armada sesuai detail di atas. Terima kasih! 🙏`;
-
-      const url="https://wa.me/6285187715318?text="+encodeURIComponent(template);
-      window.open(url,'_blank');
-      
-      // Reset form dan tutup modal
-      closeModal();
-      setTimeout(()=>{
-        document.getElementById('namaPemesan').value='';
-        document.getElementById('nohpPemesan').value='';
-        document.getElementById('alamatJemput').value='';
-        document.getElementById('alamatTujuan').value='';
-        document.getElementById('tanggalJemput').value='';
-        document.getElementById('catatanTambahan').value='';
-      },300);
-    }
-
-    function toggleTheme(){
-      isDark = !isDark;
-      document.body.classList.toggle('dark-mode');
-      document.querySelector('.theme-toggle').textContent = isDark ? '☀️' : '🌙';
-    }
-
-    function smoothScrollTo(el){
-      requestAnimationFrame(()=>{
-        el.scrollIntoView({behavior:'smooth',block:'center'});
-      });
-    }
-    
-    // Close modal when clicking outside
-    document.getElementById('orderModal').addEventListener('click', function(e){
-      if(e.target === this){
-        closeModal();
+        teks += `Detail pesanan:%0A`;
+        teks += `- Armada: ${labelArmada}%0A`;
+        teks += `- Jenis angkutan: ${labelJenis}%0A`;
+        teks += `- Rute: ${lokasiLabel[jemput] || jemput} ➝ ${lokasiLabel[tujuan] || tujuan}%0A`;
+        teks += `- Tenaga muat & bongkar: ${crew > 0 ? formatRupiah(crew) : "Muat bongkar sendiri"}%0A`;
+        teks += `- Perkiraan total: ${formatRupiah(minTotal)} - ${formatRupiah(maxTotal)}%0A%0A`;
       }
-    });
-    
-    // Close modal with Escape key
-    document.addEventListener('keydown', function(e){
-      if(e.key === 'Escape'){
-        closeModal();
+
+      teks += `Data pemesan:%0A`;
+      teks += `- Nama: ${nama}%0A`;
+      teks += `- Nomor HP/WA: ${nohp}%0A`;
+      teks += `- Alamat jemput: ${alamatJ}%0A`;
+      teks += `- Alamat tujuan: ${alamatT}%0A`;
+      teks += `- Tanggal & jam jemput: ${tgl}%0A`;
+
+      if (catatan) {
+        teks += `%0ACatatan tambahan:%0A${catatan}%0A`;
       }
-    });
-    
-    // Prevent scroll on number/datetime input
-    document.querySelectorAll('input[type="tel"], input[type="datetime-local"]').forEach(input => {
-      input.addEventListener('wheel', function(e){
-        e.preventDefault();
-      });
-    });
+
+      teks += `%0AMohon dibantu konfirmasi ketersediaan armada dan harga finalnya. Terima kasih.`;
+
+      // Ganti dengan nomor WhatsApp admin (format internasional, tanpa +)
+      const nomorAdmin = "6281234567890";
+      const url = `https://wa.me/${nomorAdmin}?text=${teks}`;
+
+      window.open(url, "_blank");
+    }
   </script>
 </body>
 </html>
