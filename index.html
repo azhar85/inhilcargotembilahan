@@ -13,8 +13,8 @@
       min-height:100vh;
       display:flex;
       justify-content:center;
-      align-items:center;
-      padding:20px;
+      align-items:flex-start;
+      padding:32px 20px;
       position:relative;
       overflow-x:hidden;
     }
@@ -55,7 +55,7 @@
       border-radius:24px;
       box-shadow:0 20px 60px rgba(0,0,0,.2);
       width:100%;
-      max-width:600px;
+      max-width:620px;
       position:relative;
       z-index:1;
       animation:slideUp 0.5s ease-out;
@@ -67,14 +67,16 @@
     }
     
     .header{
-      text-align:center;
       margin-bottom:24px;
       position:relative;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
     }
     
     .truck-icon{
       font-size:3rem;
-      margin-bottom:8px;
+      margin-bottom:4px;
       animation:truck 2s ease-in-out infinite;
     }
     
@@ -85,15 +87,24 @@
     
     h1{
       color:#4c51bf;
-      font-size:1.8rem;
-      margin-bottom:8px;
-      font-weight:700;
+      font-size:1.9rem;
+      margin-bottom:4px;
+      font-weight:800;
     }
     
     .subtitle{
       color:#6b7280;
       font-size:0.9rem;
     }
+    
+    .hero-text{
+      margin-top:4px;
+      font-size:0.9rem;
+      color:#4b5563;
+      line-height:1.6;
+    }
+    
+    .dark-mode .hero-text{color:#e5e7eb}
     
     .theme-toggle{
       position:absolute;
@@ -105,11 +116,27 @@
       cursor:pointer;
       padding:8px;
       border-radius:50%;
-      transition:transform 0.3s;
+      transition:transform 0.3s,background 0.3s;
     }
     
     .theme-toggle:hover{
       transform:rotate(20deg);
+      background:rgba(148,163,184,0.2);
+    }
+    
+    .form-section-title{
+      margin-top:8px;
+      margin-bottom:12px;
+      font-size:0.95rem;
+      font-weight:600;
+      color:#4b5563;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    
+    .form-section-title span.emoji{
+      font-size:1.2rem;
     }
     
     .form-group{
@@ -320,6 +347,15 @@
     
     .dark-mode .total-line{background:#0f3460}
     
+    .total-subnote{
+      font-size:0.8rem;
+      color:#6b7280;
+      margin-top:8px;
+      line-height:1.4;
+    }
+    
+    .dark-mode .total-subnote{color:#d1d5db}
+    
     .actions-inline{
       display:flex;
       flex-direction:column;
@@ -329,12 +365,12 @@
     
     .muted{
       color:#6b7280;
-      font-size:0.85rem;
-      text-align:center;
+      font-size:0.8rem;
       margin-top:16px;
-      padding:12px;
-      background:rgba(255,255,255,0.5);
+      padding:10px 12px;
+      background:rgba(255,255,255,0.6);
       border-radius:10px;
+      line-height:1.5;
     }
     
     .dark-mode .muted{background:rgba(0,0,0,0.2);color:#9ca3af}
@@ -345,6 +381,8 @@
       background:#fef3c7;
       border-radius:12px;
       border-left:4px solid #f59e0b;
+      font-size:0.9rem;
+      line-height:1.5;
     }
     
     .dark-mode .tips{background:#2c1810;border-color:#f39c12}
@@ -464,8 +502,9 @@
       background:linear-gradient(135deg,#f3f4f6,#e5e7eb);
       padding:16px;
       border-radius:12px;
-      margin-bottom:20px;
+      margin-bottom:16px;
       border-left:4px solid #4c51bf;
+      font-size:0.92rem;
     }
     
     .dark-mode .order-summary{
@@ -488,9 +527,18 @@
       font-size:0.95rem;
     }
     
+    .order-summary-note{
+      margin-top:8px;
+      font-size:0.8rem;
+      color:#6b7280;
+    }
+    
+    .dark-mode .order-summary-note{color:#d1d5db}
+    
     @media(max-width:640px){
+      body{padding:20px 14px;}
       .container{padding:20px}
-      h1{font-size:1.5rem}
+      h1{font-size:1.6rem}
       .grid{grid-template-columns:1fr}
       .modal-content{padding:20px}
     }
@@ -502,7 +550,16 @@
       <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">🌙</button>
       <div class="truck-icon">🚚</div>
       <h1>INHILCARGO</h1>
-      <p class="subtitle">Jasa Angkutan Tergesit Tembilahan</p>
+      <p class="subtitle">Jasa Angkutan Terg es it Tembilahan & Sekitar</p>
+      <p class="hero-text">
+        Hitung sendiri kisaran biaya angkut VIAR/PICKUP dari dan ke Tembilahan. 
+        <strong>Harga akhir tetap dikonfirmasi via WhatsApp</strong> sesuai jenis barang dan kondisi akses lokasi.
+      </p>
+    </div>
+
+    <div class="form-section-title">
+      <span class="emoji">🧮</span>
+      <span>Isi data berikut untuk melihat <strong>kisaran tarif</strong></span>
     </div>
 
     <div class="form-group">
@@ -562,21 +619,25 @@
     </div>
 
     <button class="btn-primary" onclick="hitung()">
-      <span style="position:relative;z-index:1">🧮 Hitung Perkiraan Biaya</span>
+      <span style="position:relative;z-index:1">🔍 Lihat Kisaran Biaya</span>
     </button>
 
     <div class="loading" id="loading">
       <div class="spinner"></div>
-      <p>Menghitung tarif terbaik...</p>
+      <p>Menghitung kisaran tarif terbaik...</p>
     </div>
 
     <div id="hasil" class="result" style="display:none"></div>
     
     <div class="tips">
-      <strong>💡 Tips:</strong> Booking lebih awal untuk mendapat jadwal tetap. Hubungi kami untuk diskon khusus pemesanan rutin!
+      <strong>💡 Tips:</strong> Booking lebih awal untuk mendapat jadwal tetap. 
+      Untuk kiriman rutin (toko, usaha, kantor) bisa negosiasi harga khusus langsung via WhatsApp.
     </div>
     
-    <p class="muted">*Harga bersifat perkiraan dan dapat berubah jika berat/volume berlebihan atau kondisi akses sulit.</p>
+    <p class="muted">
+      *Kisaran harga sudah termasuk BBM & sopir. Harga bisa berubah jika volume/berat barang besar, 
+      akses lokasi sulit, atau ada permintaan khusus. Admin akan konfirmasi total sebelum berangkat.*
+    </p>
   </div>
 
   <!-- Modal Form Order -->
@@ -589,7 +650,12 @@
       
       <div class="order-summary" id="modalSummary"></div>
       
-      <div class="form-group">
+      <div class="order-summary-note">
+        Kisaran biaya di atas <strong>belum final</strong>. 
+        Admin akan menyesuaikan kembali setelah mengetahui detail barang dan kondisi akses.
+      </div>
+      
+      <div class="form-group" style="margin-top:14px;">
         <label for="namaPemesan"><span class="label-icon">👤</span> Nama Lengkap</label>
         <input type="text" id="namaPemesan" class="form-input" placeholder="Masukkan nama lengkap" required>
       </div>
@@ -620,7 +686,7 @@
       </div>
       
       <button class="btn-wa" onclick="sendToWA()">
-        <span style="position:relative;z-index:1">✅ Kirim ke WhatsApp</span>
+        <span style="position:relative;z-index:1">✅ Kirim ke WhatsApp (Konfirmasi Harga)</span>
       </button>
     </div>
   </div>
@@ -688,6 +754,14 @@
         pekanbaru:'PEKANBARU',
       };
       return map[k]||k;
+    }
+
+    // Mengubah tarif dasar menjadi kisaran (misal 80% - 120% dari tarif patokan).
+    // Silakan sesuaikan rumus ini jika mau kisaran lain.
+    function getRange(base){
+      const min = Math.round(base * 0.8);  // contoh: 80% dari tarif patokan
+      const max = Math.round(base * 1.2);  // contoh: 120% dari tarif patokan
+      return {min, max};
     }
 
     function getBase(armada,jemput,tujuan){
@@ -759,17 +833,19 @@
           return;
         }
         
+        const {min:baseMin, max:baseMax} = getRange(base);
         const biayaCrew=crew;
-        const total=base+biayaCrew;
+        const totalMin = baseMin + biayaCrew;
+        const totalMax = baseMax + biayaCrew;
         const waktu=getEstimasiWaktu(jemput,tujuan);
 
-        lastCalc={armada,jenis,jemput,tujuan,base,biayaCrew,total,waktu};
+        lastCalc={armada,jenis,jemput,tujuan,base,baseMin,baseMax,biayaCrew,totalMin,totalMax,waktu};
 
         loading.style.display='none';
         output.style.display='block';
         output.innerHTML=`
           <div class="breakdown">
-            <strong>📋 Ringkasan Pesanan</strong>
+            <strong>📋 Ringkasan Perkiraan</strong>
             <div class="info-box">
               <div style="margin-bottom:8px">
                 <strong>Armada:</strong> ${armada.toUpperCase()} 
@@ -783,16 +859,19 @@
               </div>
             </div>
             <ul class="list money">
-              <li><span>💰 Tarif dasar</span><span><strong>${rupiah(base)}</strong></span></li>
+              <li><span>💰 Tarif dasar (perkiraan)</span><span><strong>${rupiah(baseMin)} - ${rupiah(baseMax)}</strong></span></li>
               <li><span>👷 Tenaga muat & bongkar</span><span><strong>${rupiah(biayaCrew)}</strong></span></li>
             </ul>
             <div class="total-line money">
               <span>🎯 Total Perkiraan</span>
-              <span style="font-size:1.3rem;color:#4c51bf">${rupiah(total)}</span>
+              <span style="font-size:1.15rem;color:#4c51bf">${rupiah(totalMin)} - ${rupiah(totalMax)}</span>
             </div>
+            <p class="total-subnote">
+              Kisaran di atas <strong>belum mengikat</strong>. Harga akhir akan dikonfirmasi admin setelah detail barang & kondisi akses lokasi disampaikan via WhatsApp.
+            </p>
             <div class="actions-inline">
               <button class="btn-wa" onclick="orderWA()">
-                <span style="position:relative;z-index:1">💬 Chat WhatsApp (Order Sekarang)</span>
+                <span style="position:relative;z-index:1">💬 Chat WhatsApp (Lanjut Konfirmasi)</span>
               </button>
             </div>
           </div>
@@ -808,10 +887,10 @@
       // Show modal with order summary
       const modal = document.getElementById('orderModal');
       const summary = document.getElementById('modalSummary');
-      const {armada,jenis,jemput,tujuan,base,biayaCrew,total,waktu}=lastCalc;
+      const {armada,jenis,jemput,tujuan,baseMin,baseMax,biayaCrew,totalMin,totalMax,waktu}=lastCalc;
       
       summary.innerHTML = `
-        <div class="order-summary-title">📦 Ringkasan Pesanan Anda</div>
+        <div class="order-summary-title">📦 Ringkasan Perkiraan Pesanan</div>
         <div class="order-summary-item">
           <span>Armada:</span>
           <strong>${armada.toUpperCase()}</strong>
@@ -829,8 +908,16 @@
           <strong>${waktu}</strong>
         </div>
         <div class="order-summary-item" style="border-top:2px dashed #cbd5e1;margin-top:8px;padding-top:8px">
-          <span style="font-size:1.1rem">Total Biaya:</span>
-          <strong style="color:#4c51bf;font-size:1.2rem">${rupiah(total)}</strong>
+          <span>Tarif dasar (kisaran):</span>
+          <strong>${rupiah(baseMin)} - ${rupiah(baseMax)}</strong>
+        </div>
+        <div class="order-summary-item">
+          <span>Muat & bongkar:</span>
+          <strong>${rupiah(biayaCrew)}</strong>
+        </div>
+        <div class="order-summary-item">
+          <span style="font-size:1.05rem">Total Perkiraan:</span>
+          <strong style="color:#4c51bf;font-size:1.1rem">${rupiah(totalMin)} - ${rupiah(totalMax)}</strong>
         </div>
       `;
       
@@ -847,13 +934,13 @@
       const template=
 `🚚 *INHILCARGO - PERMINTAAN INFO TARIF*
 
-Halo Admin, saya ingin menanyakan tarif untuk:
+Halo Admin, saya ingin menanyakan tarif untuk rute berikut yang belum ada di sistem kalkulator:
 
 🚛 Armada: *${armada.toUpperCase()}*
 📦 Jenis Angkutan: *${capitalize(jenis)}*
 📍 Rute: *${formatLokasi(jemput)}* ➜ *${formatLokasi(tujuan)}*
 
-Mohon informasi ketersediaan dan tarifnya. Terima kasih! 🙏`;
+Mohon informasi kisaran tarif dan ketersediaan armada. Terima kasih! 🙏`;
 
       const url="https://wa.me/6285187715318?text="+encodeURIComponent(template);
       window.open(url,'_blank');
@@ -893,18 +980,18 @@ Mohon informasi ketersediaan dan tarifnya. Terima kasih! 🙏`;
       };
       const tanggalFormat = dateObj.toLocaleDateString('id-ID', options);
       
-      const {armada,jenis,jemput,tujuan,base,biayaCrew,total,waktu}=lastCalc;
+      const {armada,jenis,jemput,tujuan,baseMin,baseMax,biayaCrew,totalMin,totalMax,waktu}=lastCalc;
 
       const template=
-`🚚 *INHILCARGO - PESANAN BARU*
+`🚚 *INHILCARGO - PERMINTAAN PESANAN & KONFIRMASI TARIF*
 
 ━━━━━━━━━━━━━━━━━━━━━━━
-📦 *DETAIL PESANAN*
+📦 *DETAIL PERKIRAAN PESANAN*
 ━━━━━━━━━━━━━━━━━━━━━━━
 🚛 Armada: *${armada.toUpperCase()}*
 📦 Jenis Angkutan: *${capitalize(jenis)}*
 📍 Rute: *${formatLokasi(jemput)}* ➜ *${formatLokasi(tujuan)}*
-⏱️ Estimasi Waktu: *${waktu}*
+⏱️ Estimasi Waktu Perjalanan: *${waktu}*
 
 ━━━━━━━━━━━━━━━━━━━━━━━
 👤 *DATA PEMESAN*
@@ -921,23 +1008,24 @@ ${alamatJemput}
 🎯 Alamat Tujuan:
 ${alamatTujuan}
 
-📅 Jadwal Jemput:
+📅 Jadwal Jemput (keinginan saya):
 ${tanggalFormat}
 
-${catatan ? `📝 Catatan:\n${catatan}\n\n` : ''}━━━━━━━━━━━━━━━━━━━━━━━
-💰 *RINCIAN BIAYA*
+${catatan ? `📝 Catatan Tambahan:\n${catatan}\n\n` : ''}━━━━━━━━━━━━━━━━━━━━━━━
+💰 *RINCIAN KISARAN BIAYA (DARI KALKULATOR)*
 ━━━━━━━━━━━━━━━━━━━━━━━
-• Tarif Dasar: ${rupiah(base)}
+• Tarif Dasar (perkiraan): ${rupiah(baseMin)} - ${rupiah(baseMax)}
 • Muat & Bongkar: ${rupiah(biayaCrew)}
 ━━━━━━━━━━━━━━━━━━━━━━━
-💵 *TOTAL BIAYA: ${rupiah(total)}*
+💵 *TOTAL PERKIRAAN: ${rupiah(totalMin)} - ${rupiah(totalMax)}*
 ━━━━━━━━━━━━━━━━━━━━━━━
-Mohon konfirmasi ketersediaan armada. Terima kasih! 🙏`;
+
+Mohon konfirmasi *harga final* dan ketersediaan armada sesuai detail di atas. Terima kasih! 🙏`;
 
       const url="https://wa.me/6285187715318?text="+encodeURIComponent(template);
       window.open(url,'_blank');
       
-      // Reset form and close modal
+      // Reset form dan tutup modal
       closeModal();
       setTimeout(()=>{
         document.getElementById('namaPemesan').value='';
@@ -975,7 +1063,7 @@ Mohon konfirmasi ketersediaan armada. Terima kasih! 🙏`;
       }
     });
     
-    // Prevent scroll on number input
+    // Prevent scroll on number/datetime input
     document.querySelectorAll('input[type="tel"], input[type="datetime-local"]').forEach(input => {
       input.addEventListener('wheel', function(e){
         e.preventDefault();
